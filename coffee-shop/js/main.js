@@ -5,6 +5,19 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* story-sprite 左右擺動 tick tock 效果（瞬間切換、不補間） */
+gsap.fromTo(
+  ".story-sprite",
+  { rotate: 0 },
+  {
+    rotate: 4,
+    duration: 0.4, // 每個位置停留 0.6 秒
+    ease: "steps(1)", // 單步階 = 瞬間跳變，無平滑過渡
+    yoyo: true,
+    repeat: -1,
+  },
+);
+
 /* hero 背景視差：scroll 時背景往下飄一點，看起來移動比頁面慢 */
 gsap.fromTo(
   ".hero-bg",
@@ -36,3 +49,23 @@ gsap.fromTo(
     },
   },
 );
+
+/* staff 成員視差：每列獨立綁自己的 ScrollTrigger */
+gsap.utils.toArray(".staff-row").forEach((row) => {
+  const target = row.querySelector(".member-headshot");
+  if (!target) return;
+  gsap.fromTo(
+    target,
+    { yPercent: -50 },
+    {
+      yPercent: 50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: row, // ← 每列以自己為 trigger
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    },
+  );
+});

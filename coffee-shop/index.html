@@ -106,7 +106,7 @@
         </div>
         <!-- Sprite 在裁切容器外，可以正常 overflow -->
         <img src="assets/images/story_sprite.png" alt="story sprite"
-          class="absolute bottom-20 right-12 translate-x-1/2 translate-y-1/4 scale-110" />
+          class="story-sprite absolute bottom-20 right-12 translate-x-1/2 translate-y-1/4 scale-110" />
       </div>
       <div>
         <span class="font-hand text-blush text-2xl font-semibold mb-3.5 inline-block">about us ✎</span>
@@ -190,7 +190,9 @@
         <article
           class="staff-row s-xz flex gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 max-md:flex-col max-md:gap-10 max-md:py-8">
           <div class="staff-photo relative aspect-square flex-1 overflow-hidden grid place-items-center">
-            <img src="assets/images/members_1.png" alt="" class="size-4/5 object-contain" />
+            <div class="member-headshot relative grid place-items-center size-4/5 overflow-hidden aspect-square">
+              <img src="assets/images/members_1.png" alt="" class="w-full object-contain" />
+            </div>
           </div>
           <div class="staff-info flex-1">
             <span class="font-display text-xs text-milk-tea-deep tracking-[4px] block mb-2.5">NO · 01</span>
@@ -206,7 +208,9 @@
         <article
           class="staff-row s-xm flex gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 flex-row-reverse max-md:flex-col max-md:gap-10 max-md:py-8">
           <div class="staff-photo relative aspect-square flex-1 overflow-hidden grid place-items-center">
-            <img src="assets/images/members_2.png" alt="" class="size-4/5 object-contain" />
+            <div class="member-headshot relative grid place-items-center size-4/5 overflow-hidden aspect-square">
+              <img src="assets/images/members_1.png" alt="" class="w-full object-contain" />
+            </div>
           </div>
           <div class="staff-info flex-1 text-right max-md:text-left">
             <span class="font-display text-xs text-milk-tea-deep tracking-[4px] block mb-2.5">NO · 02</span>
