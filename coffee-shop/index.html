@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>糖雲咖啡 · Sugar Cloud Café</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Klee+One:wght@400;600&family=Nunito:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link href="dist/output.css" rel="stylesheet">
+</head>
+
+<body class="relative">
+
+  <!-- ============== NAV ============== -->
+  <header
+    class="fixed top-0 left-0 right-0 z-50 py-5 px-12 flex items-center justify-between bg-cream backdrop-blur-md border-b-2 border-dashed border-milk-tea/80 max-md:px-6 max-md:py-4">
+    <div class="flex items-center gap-2.5 font-display font-medium text-xl text-coffee tracking-wide">
+      <div class="logo-mark"></div>
+      <div>
+        畝湯咖啡
+        <small class="block font-hand text-sm text-blush leading-none mt-0.5 font-semibold">mu tier</small>
+      </div>
+    </div>
+    <nav class="max-md:hidden">
+      <ul class="flex gap-8 list-none text-sm font-medium tracking-wider">
+        <li><a href="#story" class="nav-link text-coffee no-underline">關於我們</a></li>
+        <li><a href="#rules" class="nav-link text-coffee no-underline">入店須知</a></li>
+        <li><a href="#staff" class="nav-link text-coffee no-underline">店員介紹</a></li>
+        <li><a href="#menu" class="nav-link text-coffee no-underline">菜單</a></li>
+        <li><a href="#visit" class="nav-link text-coffee no-underline">店家位置</a></li>
+      </ul>
+    </nav>
+    <a class="inline-block py-2.5 px-5 border-2 border-coffee rounded-full bg-transparent text-coffee no-underline font-body font-semibold text-sm tracking-widest leading-tight cursor-pointer transition-all duration-300 hover:bg-coffee hover:text-cream hover:-translate-y-0.5"
+      href="booking.html">訂位 RESERVE</a>
+  </header>
+
+  <main class="relative z-[2]">
+
+    <!-- ============== HERO ============== -->
+    <section id="hero"
+      class="relative min-h-screen pt-36 px-12 pb-12 flex items-end justify-end max-md:px-6 max-md:pt-32 max-md:pb-16 overflow-hidden">
+      <div
+        class="hero-bg absolute inset-x-0 -top-[15%] h-[130%] bg-[url('../assets/images/hero.jpg')] bg-cover bg-center will-change-transform">
+      </div>
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="relative max-w-3xl text-right pr-12">
+        <span
+          class="inline-flex flex-row-reverse items-center gap-2.5 font-hand text-xl text-blush font-semibold mb-6 opacity-0 animate-fade-slide-tag before:content-[''] before:w-9 before:h-px before:bg-blush before:rounded">hello,
+          sweet morning ✿</span>
+        <h1 class="font-display font-normal text-[clamp(52px,7vw,60px)] leading-tight tracking-tighter text-cream mb-7"
+          style='font-variation-settings:"SOFT" 80,"WONK" 1'>
+          <span class="block opacity-0 translate-y-10 animate-fade-slide-line-1"><em
+              class="not-italic font-hand font-bold text-blush text-[0.92em] inline-block rotate-[-4deg] -translate-y-2 mx-1.5">累了？</em>歡迎回家，</span>
+          <span class="block opacity-0 translate-y-10 animate-fade-slide-line-2">來一杯奶茶吧</span>
+        </h1>
+        <p class="max-w-md ml-auto text-base leading-loose text-cream mb-10 opacity-0 animate-fade-slide-desc">
+          陽光從天窗落下來，剛好落在你手邊。 <br>
+          待久一點也沒關係。<br>
+          這裡的一杯茶，會陪你把下午喝完。
+        </p>
+        <div class="flex justify-end gap-5 items-center opacity-0 animate-fade-slide-actions">
+          <button
+            class="btn-primary inline-flex items-center gap-2.5 py-4 px-8 bg-blush text-coffee border-none rounded-full font-body font-semibold text-base tracking-wide cursor-pointer transition-all duration-300 shadow-soft hover:bg-cream hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-10px_rgba(199,122,102,0.5)]">
+            探索菜單
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== STRIP ============== -->
+    <div
+      class="py-7 px-12 text-cream-soft flex overflow-hidden gap-16 font-display text-xl italic tracking-wider relative">
+      <div class="flex gap-16 animate-marquee whitespace-nowrap shrink-0">
+        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>精品手沖</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>自家烘焙</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>手作甜點</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>季節限定</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>寵物友善</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>小巷老宅</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>精品手沖</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>自家烘焙</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>手作甜點</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>季節限定</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>寵物友善</span>
+        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>小巷老宅</span>
+      </div>
+    </div>
+
+    <!-- ============== STORY ============== -->
+    <section id="story"
+      class="py-36 px-32 grid grid-cols-[1fr_1.1fr] gap-20 items-center max-w-[1400px] mx-auto max-md:grid-cols-1 max-md:py-20 max-md:px-6 max-md:gap-12">
+      <!-- 主圖等比例顯示，右下角疊一張 sprite -->
+      <div class="relative shadow-soft w-[90%]">
+        <!-- 圖片裁切容器：固定比例 + overflow-hidden 容納視差 -->
+        <div class="relative overflow-hidden aspect-[441/662]">
+          <img src="assets/images/story_house.png" alt="story image"
+            class="story-img absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
+        </div>
+        <!-- Sprite 在裁切容器外，可以正常 overflow -->
+        <img src="assets/images/story_sprite.png" alt="story sprite"
+          class="absolute bottom-20 right-12 translate-x-1/2 translate-y-1/4 scale-110" />
+      </div>
+      <div>
+        <span class="font-hand text-blush text-2xl font-semibold mb-3.5 inline-block">about us ✎</span>
+        <h2
+          class="font-display font-normal text-[clamp(38px,4.5vw,64px)] leading-tight tracking-tight text-coffee mb-6">
+          一間小小的、<em class="not-italic font-hand text-sage font-bold">剛好</em>的咖啡店。</h2>
+        <p class="text-base leading-loose text-coffee-soft mb-5 max-w-lg">
+          2026 年的春天，畝湯在穹頂皓天的一角悄然萌芽。 店長一點一滴傾注心力，想為每一位到訪的朋友，打造一個能安心卸下疲憊、舒緩肩膀的溫暖避風港。
+        </p>
+        <p class="text-base leading-loose text-coffee-soft mb-5 max-w-lg">
+          為了守護這份安靜的空間，目前店內採全預約制。但願這座小小的咖啡廳，能成為溫柔接住你、療癒你的一方天地。
+        </p>
+        <span class="mt-8 font-hand text-coffee text-2xl font-bold rotate-[-5deg] inline-block">— 店主 吃芒狗</span>
+      </div>
+    </section>
+
+    <!-- ============== RULES ============== -->
+    <section id="rules" class="py-32 px-12 max-w-4xl mx-auto relative max-md:py-20 max-md:px-6">
+      <div
+        class="absolute top-16 right-0 w-36 h-36 bg-butter opacity-30 rounded-[50%_50%_48%_52%_/_56%_44%_52%_48%] animate-morph-slow z-0">
+      </div>
+      <div class="absolute bottom-20 -left-5 w-24 h-24 bg-sage-soft opacity-40 rounded-full animate-morph-slower z-0">
+      </div>
+
+      <div class="relative z-10">
+        <div class="text-center mb-12">
+          <span class="font-hand text-sage text-2xl font-semibold block mb-1">house rules ✎</span>
+          <h2
+            class="font-display font-normal text-[clamp(38px,4.6vw,60px)] leading-tight tracking-tight text-coffee mb-4">
+            入店 <em class="not-italic font-hand text-blush font-bold">須知</em></h2>
+          <p class="text-coffee-soft text-sm leading-loose max-w-md mx-auto">為了讓每位客人都能舒服地慢慢來，<br>幾個小小的約定想先跟你說 ✿</p>
+        </div>
+
+        <ol class="list-none p-0 max-w-2xl mx-auto">
+          <li class="rule-row flex items-start gap-7 py-7 px-1 border-b border-dashed border-coffee/20 last:border-b-0">
+            <span
+              class="rule-num shrink-0 w-16 h-16 grid place-items-center font-display font-normal text-xl text-coffee bg-blush">01</span>
+            <div class="flex-1 min-w-0">
+              <h3
+                class="font-display font-medium text-xl text-coffee mb-1.5 leading-snug flex flex-wrap items-baseline gap-x-3 gap-y-1.5 tracking-tight">
+                每人低消一品 <span class="font-hand text-xl font-semibold text-blush leading-none">one minimum</span></h3>
+              <p class="text-sm text-coffee-soft leading-loose max-w-lg">一杯飲品或一份餐點皆可。</p>
+            </div>
+          </li>
+          <li class="rule-row flex items-start gap-7 py-7 px-1 border-b border-dashed border-coffee/20 last:border-b-0">
+            <span
+              class="rule-num shrink-0 w-16 h-16 grid place-items-center font-display font-normal text-xl text-coffee bg-sage">02</span>
+            <div class="flex-1 min-w-0">
+              <h3
+                class="font-display font-medium text-xl text-coffee mb-1.5 leading-snug flex flex-wrap items-baseline gap-x-3 gap-y-1.5 tracking-tight">
+                保持基本的社交禮儀 <span class="font-hand text-xl font-semibold text-milk-tea-deep leading-none">manners
+                  matter</span></h3>
+              <p class="text-sm text-coffee-soft leading-loose max-w-lg">
+                為了讓每一位夥伴都能享有舒適寧靜的時光，在室內走動時，請協助我們盡量開啟走路模式，避免奔跑或大幅度的跳躍跑動喔。</p>
+            </div>
+          </li>
+          <li class="rule-row flex items-start gap-7 py-7 px-1 border-b border-dashed border-coffee/20 last:border-b-0">
+            <span
+              class="rule-num shrink-0 w-16 h-16 grid place-items-center font-display font-normal text-xl text-coffee bg-milk-tea-deep">03</span>
+            <div class="flex-1 min-w-0">
+              <h3
+                class="font-display font-medium text-xl text-coffee mb-1.5 leading-snug flex flex-wrap items-baseline gap-x-3 gap-y-1.5 tracking-tight">
+                尊重與店員互動的界線 <span class="font-hand text-xl font-semibold text-sage leading-none">mind the gap</span></h3>
+              <p class="text-sm text-coffee-soft leading-loose max-w-lg">若有合照或較親密的互動需求，請先詢問店員，並保持適當的社交距離。</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============== STAFF ============== -->
+    <section id="staff" class="py-32 px-12 max-w-6xl mx-auto max-md:py-20 max-md:px-6">
+      <div class="text-center mb-12">
+        <span class="font-hand text-sage text-2xl font-semibold block mb-1">our team ✿</span>
+        <h2 class="font-display font-normal text-[clamp(34px,4vw,52px)] leading-snug text-coffee tracking-tight">
+          認真的人，<em class="not-italic font-hand text-blush font-bold">泡認真的</em>咖啡</h2>
+      </div>
+
+      <div class="flex flex-col">
+        <!-- 小棕 -->
+        <article
+          class="staff-row s-xz flex gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 max-md:flex-col max-md:gap-10 max-md:py-8">
+          <div class="staff-photo relative aspect-square flex-1 overflow-hidden grid place-items-center">
+            <img src="assets/images/members_1.png" alt="" class="size-4/5 object-contain" />
+          </div>
+          <div class="staff-info flex-1">
+            <span class="font-display text-xs text-milk-tea-deep tracking-[4px] block mb-2.5">NO · 01</span>
+            <h3 class="font-display font-medium text-xl leading-tight text-coffee mb-1.5"><em
+                class="not-italic font-hand font-bold text-4xl mr-4 text-blush">吃芒狗</em>店長兼店狗</h3>
+            <p class="text-xs text-coffee-soft tracking-widest uppercase mb-3.5">owner · roaster</p>
+            <p class="text-base leading-snug max-w-xs text-coffee">
+              樂於當小狗的拉拉菲爾族。</p>
+          </div>
+        </article>
+
+        <!-- 小麥 -->
+        <article
+          class="staff-row s-xm flex gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 flex-row-reverse max-md:flex-col max-md:gap-10 max-md:py-8">
+          <div class="staff-photo relative aspect-square flex-1 overflow-hidden grid place-items-center">
+            <img src="assets/images/members_2.png" alt="" class="size-4/5 object-contain" />
+          </div>
+          <div class="staff-info flex-1 text-right max-md:text-left">
+            <span class="font-display text-xs text-milk-tea-deep tracking-[4px] block mb-2.5">NO · 02</span>
+            <h3 class="font-display font-medium text-xl leading-tight text-coffee mb-1.5"><em
+                class="not-italic font-hand font-bold text-4xl mr-4 text-milk-tea-deep">小麥</em>甜點主廚</h3>
+            <p class="text-xs text-coffee-soft tracking-widest uppercase mb-3.5">pastry chef</p>
+            <p class="text-base leading-snug max-w-xs text-coffee ml-auto max-md:ml-0">
+              把每一個早晨揉進酥皮裡。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============== MENU ============== -->
+    <section id="menu" class="py-32 px-12 bg-cream-soft relative overflow-hidden max-md:py-20 max-md:px-5">
+      <div
+        class="absolute -top-32 -right-24 w-80 h-80 bg-butter opacity-30 rounded-[50%_50%_48%_52%_/_52%_48%_50%_50%] animate-morph-slow">
+      </div>
+      <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-sage-soft opacity-30 rounded-full animate-morph-slower">
+      </div>
+
+      <div class="max-w-5xl mx-auto relative z-10">
+        <div class="flex justify-between items-end flex-wrap gap-6 pb-9 mb-10 relative">
+          <h2 class="font-display font-normal text-[clamp(46px,5.6vw,78px)] leading-none text-coffee tracking-tighter">
+            今日 <em
+              class="not-italic font-hand text-blush font-bold text-[1.05em] inline-block rotate-[-3deg] -translate-y-1">menu</em><br>甜甜的一頁
+          </h2>
+          <p
+            class="font-hand text-sage text-xl font-semibold max-w-xs text-right leading-snug before:content-['✦'] before:inline-block before:mr-1.5 before:text-butter max-md:text-left">
+            季節配方持續替換<br>歡迎詢問當月特調</p>
+          <div class="menu-divider absolute bottom-0 left-0 right-0"></div>
+        </div>
+
+        <!-- 食物 -->
+        <div class="mb-16">
+          <div class="flex items-baseline gap-5 mb-7">
+            <span class="font-hand text-2xl text-blush font-bold tracking-wide rotate-[-2deg] inline-block">food
+              ✎</span>
+            <h3 class="font-display font-medium text-[clamp(32px,3.8vw,44px)] text-coffee tracking-tight leading-none">
+              食物</h3>
+            <span
+              class="flex-1 h-0.5 [background-image:repeating-linear-gradient(to_right,theme(colors.coffee)_0_6px,transparent_6px_12px)] opacity-40 self-center ml-3"></span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-14 items-start max-md:grid-cols-1 max-md:gap-10">
+            <!-- 左半：主食 + 甜點 -->
+            <div class="flex flex-col gap-9">
+              <!-- 主食 -->
+              <div>
+                <h4 class="font-display font-medium text-xl text-coffee mb-2 flex items-baseline gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-blush self-center"></span>主食
+                  <span class="font-hand text-xl font-semibold text-milk-tea-deep ml-auto tracking-wide">mains</span>
+                </h4>
+                <ul class="list-none p-0">
+                  <li
+                    class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                    <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                    <div class="min-w-0">
+                      <h4
+                        class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                        法式吐司 <span class="font-hand text-blush font-semibold text-lg leading-none">french toast</span>
+                      </h4>
+                      <p class="text-xs text-coffee-soft leading-relaxed">厚切布里歐許、楓糖漿、季節水果。</p>
+                    </div>
+                    <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                        class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>120</span>
+                  </li>
+                  <li
+                    class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                    <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                    <div class="min-w-0">
+                      <h4
+                        class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                        蘑菇起司歐姆蛋 <span class="font-hand text-blush font-semibold text-lg leading-none">omelette</span>
+                      </h4>
+                      <p class="text-xs text-coffee-soft leading-relaxed">三顆蛋、香煎蘑菇、格魯耶爾起司。</p>
+                    </div>
+                    <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                        class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>180</span>
+                  </li>
+                  <li
+                    class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                    <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                    <div class="min-w-0">
+                      <h4
+                        class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                        和風鮪魚三明治 <span class="font-hand text-blush font-semibold text-lg leading-none">tuna sando</span>
+                      </h4>
+                      <p class="text-xs text-coffee-soft leading-relaxed">北海道牛奶吐司、鮪魚沙拉、紫蘇葉。</p>
+                    </div>
+                    <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                        class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>160</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- 甜點 -->
+              <div>
+                <h4 class="font-display font-medium text-xl text-coffee mb-2 flex items-baseline gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-butter self-center"></span>甜點
+                  <span class="font-hand text-xl font-semibold text-milk-tea-deep ml-auto tracking-wide">sweets</span>
+                </h4>
+                <ul class="list-none p-0">
+                  <li
+                    class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                    <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                    <div class="min-w-0">
+                      <h4
+                        class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                        鄉村司康 <span class="font-hand text-blush font-semibold text-lg leading-none">scone</span></h4>
+                      <p class="text-xs text-coffee-soft leading-relaxed">奶油與自製果醬附上，溫熱上桌。</p>
+                    </div>
+                    <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                        class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>80</span>
+                  </li>
+                  <li
+                    class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                    <span
+                      class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1 [&_svg]:w-5 [&_svg]:h-5 [&_svg]:drop-shadow-[0_2px_4px_rgba(199,122,102,0.3)]"
+                      title="店主推薦">
+                      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                          d="M12 21s-6.7-4.3-6.7-10.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 6.7 2.7C18.7 16.7 12 21 12 21z" />
+                      </svg>
+                    </span>
+                    <div class="min-w-0">
+                      <h4
+                        class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                        焦糖磅蛋糕 <span class="font-hand text-blush font-semibold text-lg leading-none">caramel pound</span>
+                      </h4>
+                      <p class="text-xs text-coffee-soft leading-relaxed">發酵奶油磅蛋糕 × 手熬焦糖淋醬。</p>
+                    </div>
+                    <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                        class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>120</span>
+                  </li>
+                  <li
+                    class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                    <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                    <div class="min-w-0">
+                      <h4
+                        class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                        蜜漬檸檬塔 <span class="font-hand text-blush font-semibold text-lg leading-none">lemon tart</span>
+                      </h4>
+                      <p class="text-xs text-coffee-soft leading-relaxed">法式酥塔皮 × 手炒檸檬凝乳 × 蛋白霜。</p>
+                    </div>
+                    <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                        class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>130</span>
+                  </li>
+                  <li
+                    class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                    <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                    <div class="min-w-0">
+                      <h4
+                        class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                        芋泥奶油蛋糕
+                        <span class="font-hand text-blush font-semibold text-lg leading-none">taro cream</span>
+                        <span
+                          class="font-body text-[10px] tracking-widest uppercase text-blush bg-blush/10 py-0.5 px-2.5 rounded-full font-bold">new</span>
+                      </h4>
+                      <p class="text-xs text-coffee-soft leading-relaxed">粉紫芋泥 × 北海道鮮奶油，綿密甜香。</p>
+                    </div>
+                    <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                        class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>150</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 右半：飲品 -->
+            <div>
+              <h4 class="font-display font-medium text-xl text-coffee mb-2 flex items-baseline gap-2.5">
+                <span class="w-2 h-2 rounded-full bg-sage self-center"></span>飲品
+                <span class="font-hand text-xl font-semibold text-milk-tea-deep ml-auto tracking-wide">drinks</span>
+              </h4>
+              <ul class="list-none p-0">
+                <li
+                  class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                  <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                  <div class="min-w-0">
+                    <h4
+                      class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                      濃縮 <span class="font-hand text-blush font-semibold text-lg leading-none">espresso</span></h4>
+                    <p class="text-xs text-coffee-soft leading-relaxed">單一產區豆、中深焙，香氣飽滿。</p>
+                  </div>
+                  <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                      class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>60</span>
+                </li>
+                <li
+                  class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                  <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                  <div class="min-w-0">
+                    <h4
+                      class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                      拿鐵 <span class="font-hand text-blush font-semibold text-lg leading-none">latte</span></h4>
+                    <p class="text-xs text-coffee-soft leading-relaxed">1:3 黃金比例，滑順綿密。</p>
+                  </div>
+                  <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                      class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>140</span>
+                </li>
+                <li
+                  class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                  <span
+                    class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1 [&_svg]:w-5 [&_svg]:h-5 [&_svg]:drop-shadow-[0_2px_4px_rgba(199,122,102,0.3)]"
+                    title="店主推薦">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path
+                        d="M12 21s-6.7-4.3-6.7-10.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 6.7 2.7C18.7 16.7 12 21 12 21z" />
+                    </svg>
+                  </span>
+                  <div class="min-w-0">
+                    <h4
+                      class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                      焦糖雲朵拿鐵 <span class="font-hand text-blush font-semibold text-lg leading-none">caramel cloud</span>
+                    </h4>
+                    <p class="text-xs text-coffee-soft leading-relaxed">手打焦糖雲泡浮在液面，入口即化。</p>
+                  </div>
+                  <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                      class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>160</span>
+                </li>
+                <li
+                  class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                  <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                  <div class="min-w-0">
+                    <h4
+                      class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                      青草原抹茶 <span class="font-hand text-blush font-semibold text-lg leading-none">meadow matcha</span>
+                    </h4>
+                    <p class="text-xs text-coffee-soft leading-relaxed">宇治抹茶 × 鮮奶 × 一點蜂蜜。</p>
+                  </div>
+                  <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                      class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>180</span>
+                </li>
+                <li
+                  class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                  <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                  <div class="min-w-0">
+                    <h4
+                      class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                      玫瑰拿鐵 <span class="font-hand text-blush font-semibold text-lg leading-none">rose latte</span></h4>
+                    <p class="text-xs text-coffee-soft leading-relaxed">有機玫瑰熬茶 × 奶泡 × 乾燥花瓣。</p>
+                  </div>
+                  <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                      class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>150</span>
+                </li>
+                <li
+                  class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                  <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                  <div class="min-w-0">
+                    <h4
+                      class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                      伯爵奶茶 <span class="font-hand text-blush font-semibold text-lg leading-none">earl grey</span></h4>
+                    <p class="text-xs text-coffee-soft leading-relaxed">錫蘭紅茶冷泡八小時，慢火溫熱濃奶。</p>
+                  </div>
+                  <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                      class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>130</span>
+                </li>
+                <li
+                  class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+                  <span class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1"></span>
+                  <div class="min-w-0">
+                    <h4
+                      class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                      熱可可 <span class="font-hand text-blush font-semibold text-lg leading-none">hot cocoa</span></h4>
+                    <p class="text-xs text-coffee-soft leading-relaxed">72% 比利時巧克力片直火熬煮。</p>
+                  </div>
+                  <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                      class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>150</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 服務 -->
+        <div>
+          <div class="flex items-baseline gap-5 mb-7">
+            <span class="font-hand text-2xl text-blush font-bold tracking-wide rotate-[-2deg] inline-block">service
+              ✿</span>
+            <h3 class="font-display font-medium text-[clamp(32px,3.8vw,44px)] text-coffee tracking-tight leading-none">
+              服務</h3>
+            <span
+              class="flex-1 h-0.5 [background-image:repeating-linear-gradient(to_right,theme(colors.coffee)_0_6px,transparent_6px_12px)] opacity-40 self-center ml-3"></span>
+          </div>
+
+          <div class="grid grid-cols-3 gap-7 mb-9 max-w-xl max-md:gap-3.5 max-md:mb-7">
+            <figure class="sketch sk-1 text-center">
+              <div class="sketch-paper aspect-[4/5] p-5 grid place-items-center relative overflow-hidden">
+                <svg class="w-4/5 h-4/5 text-coffee relative z-10 [&_*]:[vector-effect:non-scaling-stroke]"
+                  viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M38 14 Q 42 22 38 30 Q 34 36 38 42" />
+                  <path d="M52 12 Q 56 20 52 28 Q 48 34 52 40" />
+                  <path d="M64 16 Q 68 24 64 32" />
+                  <ellipse cx="50" cy="52" rx="28" ry="5" />
+                  <path d="M22 52 Q 23 95 50 97 Q 77 95 78 52" />
+                  <path d="M78 62 Q 94 62 94 76 Q 94 88 78 86" />
+                  <path d="M14 102 Q 50 110 86 102" />
+                  <path d="M46 52 Q 44 49 48 49 Q 50 50 50 52 Q 50 50 52 49 Q 56 49 54 52 Q 52 55 50 57 Q 48 55 46 52z"
+                    stroke-width="1" />
+                </svg>
+              </div>
+              <figcaption class="mt-3 font-hand text-lg text-coffee-soft font-semibold tracking-wide">your favorite cup
+              </figcaption>
+            </figure>
+
+            <figure class="sketch sk-2 text-center">
+              <div class="sketch-paper aspect-[4/5] p-5 grid place-items-center relative overflow-hidden">
+                <svg class="w-4/5 h-4/5 text-coffee relative z-10 [&_*]:[vector-effect:non-scaling-stroke]"
+                  viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M28 52 Q 26 22 50 20 Q 74 22 72 52" />
+                  <path d="M30 52 Q 32 82 50 84 Q 68 82 70 52" />
+                  <path d="M34 38 Q 42 46 50 42 Q 58 38 64 44" />
+                  <path d="M40 58 Q 43 55 46 58" />
+                  <path d="M54 58 Q 57 55 60 58" />
+                  <circle cx="38" cy="68" r="0.8" fill="currentColor" />
+                  <circle cx="62" cy="68" r="0.8" fill="currentColor" />
+                  <path d="M46 74 Q 50 77 54 74" />
+                  <path d="M22 112 Q 28 92 50 92 Q 72 92 78 112" />
+                  <path d="M44 92 L 46 100 L 54 100 L 56 92" />
+                </svg>
+              </div>
+              <figcaption class="mt-3 font-hand text-lg text-coffee-soft font-semibold tracking-wide">a quiet portrait
+              </figcaption>
+            </figure>
+
+            <figure class="sketch sk-3 text-center">
+              <div class="sketch-paper aspect-[4/5] p-5 grid place-items-center relative overflow-hidden">
+                <svg class="w-4/5 h-4/5 text-coffee relative z-10 [&_*]:[vector-effect:non-scaling-stroke]"
+                  viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"
+                  stroke-linejoin="round" aria-hidden="true">
+                  <path d="M30 40 L 26 18 L 44 34" />
+                  <path d="M70 40 L 74 18 L 56 34" />
+                  <path d="M28 48 Q 22 76 50 78 Q 78 76 72 48 Q 70 32 50 32 Q 30 32 28 48z" />
+                  <path d="M38 52 Q 40 48 42 52 Q 40 56 38 52z" fill="currentColor" />
+                  <path d="M58 52 Q 60 48 62 52 Q 60 56 58 52z" fill="currentColor" />
+                  <path d="M48 62 L 52 62 L 50 65 z" fill="currentColor" />
+                  <path d="M50 65 Q 48 70 45 68" />
+                  <path d="M50 65 Q 52 70 55 68" />
+                  <path d="M28 62 L 40 63" />
+                  <path d="M28 66 L 40 65" />
+                  <path d="M72 62 L 60 63" />
+                  <path d="M72 66 L 60 65" />
+                  <path d="M34 78 Q 28 100 38 108 L 62 108 Q 72 100 66 78" />
+                  <path d="M66 98 Q 82 98 82 84 Q 82 74 74 78" />
+                </svg>
+              </div>
+              <figcaption class="mt-3 font-hand text-lg text-coffee-soft font-semibold tracking-wide">your pet friend
+              </figcaption>
+            </figure>
+          </div>
+
+          <ul class="list-none p-0">
+            <li
+              class="m-item grid grid-cols-[22px_1fr_auto] gap-5 items-start py-3.5 border-b border-dashed border-coffee/10 last:border-b-0">
+              <span
+                class="m-icon w-5 h-5 flex items-center justify-center text-blush pt-1 [&_svg]:w-5 [&_svg]:h-5 [&_svg]:drop-shadow-[0_2px_4px_rgba(199,122,102,0.3)]"
+                title="店主推薦">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 21s-6.7-4.3-6.7-10.3A3.7 3.7 0 0 1 12 8a3.7 3.7 0 0 1 6.7 2.7C18.7 16.7 12 21 12 21z" />
+                </svg>
+              </span>
+              <div class="min-w-0">
+                <h4
+                  class="font-display font-medium text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+                  不快速的速寫服務 <span class="font-hand text-blush font-semibold text-lg leading-none">slow sketch</span></h4>
+                <p class="text-xs text-coffee-soft leading-relaxed">
+                  用一整個下午，為你慢慢畫下一張。主題可選：你自己、你的毛孩、或你手中那杯咖啡；鉛筆、紙、時間，都是慢的。</p>
+              </div>
+              <span class="font-display text-lg text-coffee font-medium pt-1 whitespace-nowrap text-right"><small
+                  class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium">NT$</small>600<small
+                  class="text-[10px] tracking-widest text-coffee-soft mr-1 align-top font-medium"> 起</small></span>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="mt-12 pt-7 flex justify-between items-center flex-wrap gap-5 border-t-2 border-dotted border-coffee/25">
+          <span class="font-hand text-coffee-soft text-lg font-medium">含 10% 服務費 · 每週三更新季節品項 <b
+              class="text-blush font-bold">✿</b></span>
+          <a href="#"
+            class="font-hand text-xl text-coffee no-underline font-bold border-b-2 border-dashed border-blush pb-0.5 inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-blush after:content-['→'] after:transition-transform after:duration-300 hover:after:translate-x-1">查看完整菜單</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============== VISIT ============== -->
+    <section id="visit"
+      class="py-36 px-12 max-w-[1400px] mx-auto grid grid-cols-2 gap-20 items-center max-md:grid-cols-1 max-md:py-20 max-md:px-6 max-md:gap-12">
+      <div>
+        <h2
+          class="font-display font-normal text-[clamp(42px,5vw,72px)] leading-tight text-coffee tracking-tighter mb-8">
+          來坐坐，<br>我們<em class="not-italic font-hand text-blush font-bold">等你</em>。</h2>
+        <div class="grid grid-cols-[100px_1fr] py-5 border-b border-dashed border-coffee/20 items-baseline">
+          <span class="font-hand text-sage text-xl font-semibold">hours</span>
+          <span class="font-display text-coffee text-lg leading-normal">週二 – 週日　11:00 – 21:00<small
+              class="block font-body text-xs text-coffee-soft mt-1">週一公休・每月最後週日為讀書日</small></span>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] py-5 border-b border-dashed border-coffee/20 items-baseline">
+          <span class="font-hand text-sage text-xl font-semibold">where</span>
+          <span class="font-display text-coffee text-lg leading-normal">台北市大安區雲巷 12 號<small
+              class="block font-body text-xs text-coffee-soft mt-1">近捷運科技大樓站・巷口有隻橘貓</small></span>
+        </div>
+        <div class="grid grid-cols-[100px_1fr] py-5 items-baseline">
+          <span class="font-hand text-sage text-xl font-semibold">call</span>
+          <span class="font-display text-coffee text-lg leading-normal">02&nbsp;·&nbsp;2345&nbsp;·&nbsp;6789<small
+              class="block font-body text-xs text-coffee-soft mt-1">建議四人以上來電預約</small></span>
+        </div>
+      </div>
+
+      <div
+        class="visit-card bg-coffee text-cream-soft py-16 px-12 rounded-[40px] relative overflow-hidden shadow-warm rotate-1">
+        <span class="font-hand text-3xl text-butter font-semibold mb-2 block relative z-10">see you soon ✿</span>
+        <h3 class="font-display font-normal text-4xl leading-tight mb-5 relative z-10">第一次來？<br>留一個靠窗座位給你。</h3>
+        <p class="text-sm leading-loose opacity-90 mb-7 relative z-10">
+          我們相信慢的美好，所以座位有限。
+          如果是週末或假日的下午，
+          歡迎先留個位子，
+          也讓我們為你準備一份小驚喜。
+        </p>
+        <a href="#"
+          class="inline-flex items-center gap-2.5 py-3 px-6 bg-cream text-coffee rounded-full font-semibold text-sm no-underline relative z-10 transition-all duration-300 hover:bg-butter hover:-translate-y-0.5">
+          <span class="map-pin-dot"></span>
+          在 Google Maps 開啟
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer
+    class="py-16 px-12 bg-coffee text-cream-soft flex justify-between items-center flex-wrap gap-5 border-t-[6px] border-dotted border-milk-tea-deep max-md:py-10 max-md:px-6">
+    <div class="font-hand text-2xl text-butter">thanks for stopping by ♡</div>
+    <ul class="flex gap-5 list-none">
+      <li><a href="#"
+          class="text-cream-soft no-underline text-sm border-b border-dashed border-transparent hover:border-butter transition-colors duration-300">Instagram</a>
+      </li>
+      <li><a href="#"
+          class="text-cream-soft no-underline text-sm border-b border-dashed border-transparent hover:border-butter transition-colors duration-300">Facebook</a>
+      </li>
+      <li><a href="#"
+          class="text-cream-soft no-underline text-sm border-b border-dashed border-transparent hover:border-butter transition-colors duration-300">Podcast</a>
+      </li>
+    </ul>
+    <div class="text-xs opacity-70 tracking-wide">© 2026 Sugar Cloud Café ・ Made with warm milk</div>
+  </footer>
+
+  <!-- ============== GSAP + 自訂 JS ============== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/main.js" defer></script>
+
+</body>
+
+</html>

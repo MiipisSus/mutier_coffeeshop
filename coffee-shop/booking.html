@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>預約 · 糖雲咖啡 Sugar Cloud Café</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Klee+One:wght@400;600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F6EADA;
+    --cream-soft: #FBF3E5;
+    --milk-tea: #E2C9A6;
+    --milk-tea-deep: #C9A679;
+    --coffee: #3B2418;
+    --coffee-soft: #5A3A27;
+    --coffee-ink: #2A1810;
+    --blush: #C77A66;
+    --blush-soft: #E2A493;
+    --sage: #8FA870;
+    --sage-soft: #B8C99A;
+    --pink-mist: #F3DCD1;
+    --butter: #F4D9A4;
+    --shadow-warm: 0 30px 60px -20px rgba(59, 36, 24, 0.18);
+    --shadow-sm: 0 8px 20px -8px rgba(59, 36, 24, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', 'Klee One', sans-serif;
+    background: var(--cream);
+    color: var(--coffee);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 132px 24px 60px;        /* top 為 fixed nav 留空間 */
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(226, 201, 166, 0.45) 0, transparent 42%),
+      radial-gradient(circle at 88% 80%, rgba(243, 220, 209, 0.5) 0, transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.23  0 0 0 0 0.14  0 0 0 0 0.09  0 0 0 0.06 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+    opacity: 0.45;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .app {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ Top Nav (來自 index.html) ============ */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(246, 234, 218, 0.7);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px dashed rgba(59, 36, 24, 0.12);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--coffee);
+    letter-spacing: 0.5px;
+  }
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: var(--coffee);
+    border-radius: 50% 50% 48% 52% / 52% 48% 50% 50%;
+    position: relative;
+    display: grid;
+    place-items: center;
+    box-shadow: inset -4px -4px 6px rgba(0,0,0,0.15);
+    animation: wobble 6s ease-in-out infinite;
+  }
+  .logo-mark::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--cream);
+    border-radius: 50%;
+    box-shadow: 10px 0 0 var(--cream);
+    position: absolute;
+    top: 12px;
+  }
+  .logo-mark::after {
+    content: '';
+    width: 14px; height: 4px;
+    border-bottom: 2px solid var(--cream);
+    border-radius: 0 0 20px 20px;
+    position: absolute;
+    bottom: 11px;
+  }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-3deg); border-radius: 50% 50% 48% 52% / 52% 48% 50% 50%; }
+    50% { transform: rotate(3deg); border-radius: 48% 52% 50% 50% / 48% 52% 52% 48%; }
+  }
+  .logo-text small {
+    display: block;
+    font-family: 'Caveat', 'Klee One', cursive;
+    font-size: 14px;
+    color: var(--blush);
+    line-height: 1;
+    margin-top: 2px;
+    font-weight: 600;
+  }
+  .nav-links {
+    display: flex;
+    gap: 34px;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+  }
+  .nav-links a {
+    color: var(--coffee);
+    text-decoration: none;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 50%;
+    width: 0; height: 2px;
+    background: var(--blush);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--blush); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    padding: 10px 22px;
+    border: 1.5px solid var(--coffee);
+    border-radius: 999px;
+    background: var(--coffee);
+    color: var(--cream);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover {
+    background: transparent;
+    color: var(--coffee);
+    transform: translateY(-2px);
+  }
+
+  /* ============ Layout ============ */
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 220px) minmax(300px, 1fr) 1.1fr;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  @media (max-width: 1080px) {
+    .grid { grid-template-columns: minmax(180px, 200px) 1fr; }
+    #slotPanel { grid-column: 1 / -1; }
+  }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: 1fr; }
+    .page-head-side { grid-column: 1 / -1; }
+  }
+
+  /* ============ 左側標題（豎向欄） ============ */
+  .page-head-side {
+    position: sticky;
+    top: 110px;
+    padding: 10px 20px 10px 0;
+    border-right: 1px dashed rgba(59, 36, 24, 0.18);
+  }
+  .page-head-side .tag {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--blush);
+    font-size: 22px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+  .page-head-side h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 3.5vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -1.2px;
+    color: var(--coffee);
+    margin-bottom: 22px;
+  }
+  .page-head-side h1 em {
+    font-family: 'Caveat', 'Klee One', cursive;
+    font-style: normal;
+    color: var(--blush);
+    font-weight: 700;
+  }
+  .page-head-side .desc {
+    color: var(--coffee-soft);
+    font-size: 13.5px;
+    line-height: 1.85;
+    margin-bottom: 18px;
+  }
+  .page-head-side .footnote {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--sage);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  @media (max-width: 720px) {
+    .page-head-side {
+      position: static;
+      border-right: none;
+      border-bottom: 1px dashed rgba(59, 36, 24, 0.18);
+      padding: 0 0 22px;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+    .page-head-side .desc { max-width: 380px; margin-left: auto; margin-right: auto; }
+  }
+
+  .panel {
+    background: var(--cream-soft);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(59, 36, 24, 0.06);
+  }
+
+  /* ============ Calendar ============ */
+  .cal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .cal-month {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--coffee);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .cal-month small {
+    display: block;
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--blush);
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+  .cal-nav {
+    width: 38px; height: 38px;
+    border: 1.5px solid rgba(59, 36, 24, 0.18);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--coffee);
+    font-size: 18px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.25s;
+  }
+  .cal-nav:hover {
+    background: var(--coffee);
+    color: var(--cream-soft);
+    border-color: var(--coffee);
+    transform: translateY(-2px);
+  }
+
+  .cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  .cal-weekdays span {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--milk-tea-deep);
+    font-size: 16px;
+    text-align: center;
+    padding: 6px 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .cal-weekdays span.we { color: var(--blush); }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .day {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border: none;
+    background: transparent;
+    border-radius: 14px;
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--coffee);
+    cursor: default;
+    transition: all 0.25s cubic-bezier(.2,.8,.2,1);
+    padding: 0;
+    display: grid;
+    place-items: center;
+    user-select: none;
+  }
+  .day-num { line-height: 1; }
+  .day-other { color: rgba(59, 36, 24, 0.2); }
+  .day-past { color: rgba(59, 36, 24, 0.25); }
+  .day-today {
+    box-shadow: inset 0 0 0 1.5px var(--milk-tea-deep);
+  }
+
+  .day-avail {
+    background: var(--pink-mist);
+    cursor: pointer;
+    color: var(--coffee);
+    font-weight: 500;
+  }
+  .day-avail:hover {
+    background: var(--blush-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 14px -6px rgba(199, 122, 102, 0.45);
+  }
+  .day-avail::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; left: 50%;
+    transform: translateX(-50%);
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--blush);
+  }
+  .day-avail.has-2::after { box-shadow: 8px 0 0 var(--blush); }
+
+  .day-selected {
+    background: var(--coffee);
+    color: var(--cream-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px -8px rgba(59, 36, 24, 0.5);
+  }
+  .day-selected:hover { background: var(--coffee); color: var(--cream-soft); }
+  .day-selected::after { background: var(--butter) !important; }
+  .day-selected.has-2::after { box-shadow: 8px 0 0 var(--butter) !important; }
+
+  .cal-legend {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(59, 36, 24, 0.16);
+    display: flex;
+    gap: 18px;
+    font-size: 12.5px;
+    color: var(--coffee-soft);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .cal-legend .lg {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cal-legend .lg-box {
+    width: 14px; height: 14px;
+    border-radius: 4px;
+  }
+  .lg-avail { background: var(--pink-mist); }
+  .lg-sel { background: var(--coffee); }
+  .lg-today { background: transparent; box-shadow: inset 0 0 0 1.5px var(--milk-tea-deep); }
+
+  /* ============ Slot panel ============ */
+  .slot-empty {
+    text-align: center;
+    padding: 50px 20px;
+  }
+  .slot-empty .flower {
+    display: inline-block;
+    font-size: 56px;
+    color: var(--milk-tea-deep);
+    opacity: 0.4;
+    margin-bottom: 12px;
+    transform: rotate(-12deg);
+  }
+  .slot-empty p {
+    color: var(--coffee-soft);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .slot-empty p .h {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--blush);
+    font-size: 22px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .slot-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 2px dotted rgba(59, 36, 24, 0.2);
+    flex-wrap: wrap;
+  }
+  .slot-head .label {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--sage);
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .slot-head h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 26px;
+    color: var(--coffee);
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+  }
+  .slot-head .dow {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--blush);
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: auto;
+  }
+
+  .slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .slot-btn {
+    background: var(--cream);
+    border: 1px solid rgba(59, 36, 24, 0.08);
+    border-radius: 18px;
+    padding: 16px 18px;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+    transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+  .slot-btn:hover {
+    transform: translateY(-3px);
+    background: var(--butter);
+    border-color: var(--milk-tea-deep);
+    box-shadow: 0 14px 22px -10px rgba(59, 36, 24, 0.25);
+  }
+  .slot-btn .et {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--blush);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .slot-btn .real {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    color: var(--coffee);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .slot-btn .rest {
+    margin-top: 6px;
+    align-self: flex-start;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--sage);
+    background: rgba(143, 168, 112, 0.18);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  .slot-btn .rest.one {
+    color: var(--blush);
+    background: rgba(199, 122, 102, 0.15);
+  }
+
+  /* ============ Modal ============ */
+  .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .modal.open { opacity: 1; pointer-events: auto; }
+
+  .modal-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(59, 36, 24, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .modal-card {
+    position: relative;
+    background: var(--cream-soft);
+    border-radius: 28px;
+    padding: 32px 30px 26px;
+    width: 100%;
+    max-width: 460px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    box-shadow: var(--shadow-warm);
+    transform: translateY(20px) scale(0.96);
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .modal.open .modal-card { transform: translateY(0) scale(1); }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid rgba(59, 36, 24, 0.2);
+    color: var(--coffee);
+    font-size: 20px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.25s;
+  }
+  .modal-close:hover { background: var(--coffee); color: var(--cream); }
+
+  .modal-card .tag {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--blush);
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .modal-card h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 30px;
+    color: var(--coffee);
+    margin: 4px 0 18px;
+    letter-spacing: -0.5px;
+  }
+
+  .modal-info {
+    background: var(--cream);
+    border: 1px dashed rgba(59, 36, 24, 0.18);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 18px;
+    align-items: baseline;
+    font-size: 14px;
+  }
+  .modal-info dt {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--milk-tea-deep);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .modal-info dd {
+    font-family: 'Fraunces', serif;
+    color: var(--coffee);
+    font-weight: 500;
+  }
+
+  form { display: flex; flex-direction: column; gap: 14px; }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--coffee-soft);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .field-label::before {
+    content: '✿';
+    color: var(--blush);
+  }
+  /* Hint icon + tooltip */
+  .hint {
+    display: inline-grid;
+    place-items: center;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--milk-tea-deep);
+    color: var(--cream-soft);
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: help;
+    position: relative;
+    user-select: none;
+    transition: background 0.2s, transform 0.2s;
+    text-transform: none;
+    letter-spacing: 0;
+    flex-shrink: 0;
+  }
+  .hint:hover,
+  .hint:focus-visible {
+    background: var(--coffee);
+    transform: scale(1.1);
+    outline: none;
+  }
+  .hint-tip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--coffee);
+    color: var(--cream-soft);
+    font-family: 'Nunito', 'Klee One', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    line-height: 1.55;
+    padding: 10px 14px;
+    border-radius: 10px;
+    width: max-content;
+    max-width: 240px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.22s, transform 0.22s cubic-bezier(.2,.8,.2,1);
+    box-shadow: 0 14px 28px -10px rgba(59, 36, 24, 0.4);
+    z-index: 10;
+    white-space: normal;
+    text-align: left;
+  }
+  .hint-tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--coffee);
+  }
+  .hint:hover .hint-tip,
+  .hint:focus-visible .hint-tip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ----- 錯誤態（必填漏填、email 格式錯） ----- */
+  @keyframes fieldShake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-4px); }
+    40%      { transform: translateX(4px); }
+    60%      { transform: translateX(-3px); }
+    80%      { transform: translateX(2px); }
+  }
+  .field input.field-error,
+  .cselect.field-error .cselect-trigger {
+    border-color: var(--blush) !important;
+    border-width: 2px !important;
+    background: rgba(199, 122, 102, 0.06);
+    box-shadow: 0 0 0 4px rgba(199, 122, 102, 0.18) !important;
+    animation: fieldShake 0.5s ease;
+  }
+  .field input {
+    width: 100%;
+    border: 1.5px solid rgba(59, 36, 24, 0.16);
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-family: 'Nunito', 'Klee One', sans-serif;
+    font-size: 14.5px;
+    color: var(--coffee);
+    background: var(--cream);
+    transition: all 0.2s;
+    outline: none;
+  }
+  .field input:focus {
+    border-color: var(--blush);
+    background: var(--cream-soft);
+    box-shadow: 0 0 0 4px rgba(199, 122, 102, 0.12);
+  }
+
+  /* ----- 自製下拉選單 ----- */
+  .cselect {
+    position: relative;
+    width: 100%;
+  }
+  .cselect-trigger {
+    width: 100%;
+    border: 1.5px solid rgba(59, 36, 24, 0.16);
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-family: 'Nunito', 'Klee One', sans-serif;
+    font-size: 14.5px;
+    color: var(--coffee);
+    background: var(--cream);
+    transition: all 0.2s;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    text-align: left;
+  }
+  .cselect-trigger:focus,
+  .cselect.open .cselect-trigger {
+    border-color: var(--blush);
+    background: var(--cream-soft);
+    box-shadow: 0 0 0 4px rgba(199, 122, 102, 0.12);
+  }
+  .cselect-label.placeholder {
+    color: var(--coffee-soft);
+    opacity: 0.55;
+  }
+  .cselect-arrow {
+    width: 14px; height: 10px;
+    flex-shrink: 0;
+    color: var(--coffee);
+    transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
+  }
+  .cselect.open .cselect-arrow { transform: rotate(180deg); }
+
+  .cselect-options {
+    position: absolute;
+    top: calc(100% + 6px); left: 0; right: 0;
+    background: var(--cream-soft);
+    border: 1.5px solid rgba(59, 36, 24, 0.14);
+    border-radius: 14px;
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    z-index: 10;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top center;
+    transition: opacity 0.22s, transform 0.25s cubic-bezier(.2,.8,.2,1);
+    box-shadow: 0 18px 36px -12px rgba(59, 36, 24, 0.25);
+    max-height: 240px;
+    overflow-y: auto;
+  }
+  .cselect.open .cselect-options {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+  .cselect-options li {
+    padding: 10px 14px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--coffee);
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    user-select: none;
+  }
+  .cselect-options li:hover:not(.disabled) {
+    background: var(--blush-soft);
+  }
+  .cselect-options li.selected {
+    background: var(--coffee);
+    color: var(--cream-soft);
+    font-weight: 600;
+  }
+  .cselect-options li.selected:hover {
+    background: var(--coffee);
+  }
+  .cselect-options li.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: transparent;
+    color: var(--coffee-soft);
+  }
+  .opt-tag {
+    font-family: 'Caveat', 'Klee One', cursive;
+    font-size: 14px;
+    color: var(--blush);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .cselect-options li.selected .opt-tag { color: var(--butter); }
+
+  .modal-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 10px;
+  }
+  .btn {
+    flex: 1;
+    padding: 13px 16px;
+    border-radius: 999px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+  .btn-cancel {
+    background: transparent;
+    border: 1.5px solid var(--coffee);
+    color: var(--coffee);
+  }
+  .btn-cancel:hover { background: var(--coffee); color: var(--cream); }
+  .btn-submit {
+    background: var(--coffee);
+    color: var(--cream-soft);
+    box-shadow: 0 8px 18px -8px rgba(59, 36, 24, 0.45);
+  }
+  .btn-submit:hover {
+    background: var(--blush);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px -8px rgba(199, 122, 102, 0.5);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .modal-msg {
+    font-family: 'Caveat', 'Klee One', cursive;
+    text-align: center;
+    padding: 14px 0 4px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .modal-msg.error { color: var(--blush); }
+  .modal-msg.success { color: var(--sage); }
+
+  /* ============ View 切換動畫 ============ */
+  @keyframes viewEnter {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+      filter: blur(2px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+  .view-entering {
+    animation: viewEnter 0.5s cubic-bezier(.2, .8, .2, 1);
+    transform-origin: top center;
+  }
+
+  /* ============ Booking view (內嵌表單) ============ */
+  .booking-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 2px dotted rgba(59, 36, 24, 0.2);
+  }
+  .back-btn {
+    width: 40px; height: 40px;
+    border: 1.5px solid rgba(59, 36, 24, 0.18);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--coffee);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all 0.3s cubic-bezier(.2,.8,.2,1);
+    flex-shrink: 0;
+  }
+  .back-btn svg { width: 16px; height: 16px; }
+  .back-btn:hover {
+    background: var(--coffee);
+    color: var(--cream-soft);
+    border-color: var(--coffee);
+    transform: translateX(-3px);
+  }
+  .booking-head-text { display: flex; flex-direction: column; gap: 2px; line-height: 1; }
+  .booking-head-text .tag {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--blush);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .booking-head-text h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--coffee);
+    letter-spacing: -0.3px;
+    line-height: 1.1;
+  }
+
+  /* ============ Confirm modal extras ============ */
+  .modal-card-confirm { max-width: 420px; }
+  .confirm-sub {
+    font-size: 13px;
+    color: var(--coffee-soft);
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+  .confirm-info dt {
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--milk-tea-deep);
+  }
+
+  /* ============ Loader ============ */
+  .loader {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    background: rgba(246, 234, 218, 0.78);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .loader.show { opacity: 1; pointer-events: auto; }
+  .loader-flower {
+    font-family: 'Fraunces', serif;
+    font-size: 96px;
+    color: var(--blush);
+    animation: spinFlower 1.6s linear infinite;
+    filter: drop-shadow(0 6px 14px rgba(199, 122, 102, 0.35));
+    line-height: 1;
+  }
+  .loader-text {
+    position: absolute;
+    bottom: 38%;
+    font-family: 'Caveat', 'Klee One', cursive;
+    color: var(--coffee-soft);
+    font-size: 18px;
+    letter-spacing: 0.5px;
+  }
+  @keyframes spinFlower {
+    from { transform: rotate(0deg) scale(1); }
+    50%  { transform: rotate(180deg) scale(1.1); }
+    to   { transform: rotate(360deg) scale(1); }
+  }
+
+  /* ============ Mobile tweaks ============ */
+  @media (max-width: 540px) {
+    body { padding: 20px 14px 50px; }
+    .panel { padding: 22px 18px; border-radius: 22px; }
+    .day { font-size: 14px; border-radius: 11px; }
+    .cal-month { font-size: 20px; }
+    .slot-head h3 { font-size: 22px; }
+    .slot-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .modal-card { padding: 26px 22px 22px; border-radius: 22px; }
+    .modal-card h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="logo" style="text-decoration:none;">
+    <div class="logo-mark"></div>
+    <div class="logo-text">
+      糖雲咖啡
+      <small>sugar cloud</small>
+    </div>
+  </a>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html#story">關於我們</a></li>
+      <li><a href="index.html#rules">須知</a></li>
+      <li><a href="index.html#staff">店員</a></li>
+      <li><a href="index.html#menu">菜單</a></li>
+      <li><a href="index.html#visit">來店</a></li>
+    </ul>
+  </nav>
+  <a class="nav-cta" href="booking.html" aria-hidden="true" tabindex="-1" style="visibility:hidden;">訂位 RESERVE</a>
+</header>
+
+<main class="app">
+  <div class="grid">
+
+    <!-- ============== Title sidebar ============== -->
+    <aside class="page-head-side">
+      <span class="tag">reservation ✿</span>
+      <h1>慢慢來，<br><em>等你</em></h1>
+      <p class="desc">
+        選一個日子，<br>
+        挑一個時段，<br>
+        留一張小桌給你。
+      </p>
+      <p class="footnote">每個時段最多<br>兩組客人 ♡</p>
+    </aside>
+
+    <!-- ============== Calendar ============== -->
+    <section class="panel">
+      <div class="cal-head">
+        <button class="cal-nav" id="prevMonth" aria-label="上個月">‹</button>
+        <div class="cal-month" id="calMonth">
+          —
+          <small>—</small>
+        </div>
+        <button class="cal-nav" id="nextMonth" aria-label="下個月">›</button>
+      </div>
+
+      <div class="cal-weekdays">
+        <span class="we">日</span><span>一</span><span>二</span>
+        <span>三</span><span>四</span><span>五</span><span class="we">六</span>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+
+      <div class="cal-legend">
+        <span class="lg"><span class="lg-box lg-avail"></span>有空位</span>
+        <span class="lg"><span class="lg-box lg-sel"></span>已選</span>
+        <span class="lg"><span class="lg-box lg-today"></span>今天</span>
+      </div>
+    </section>
+
+    <!-- ============== Slot list / Booking form ============== -->
+    <section class="panel" id="slotPanel">
+      <!-- 視圖 1：尚未選日期 -->
+      <div class="slot-empty" id="slotEmpty">
+        <span class="flower">✿</span>
+        <p>
+          <span class="h">pick a day to begin ✎</span>
+          點選左側的粉色日期，<br>就能看到當日所有可預約時段。
+        </p>
+      </div>
+
+      <!-- 視圖 2：時段清單 -->
+      <div id="slotContent" hidden>
+        <div class="slot-head">
+          <span class="label">today's slots</span>
+          <h3 id="slotDate">—</h3>
+          <span class="dow" id="slotDow">—</span>
+        </div>
+        <div class="slot-grid" id="slotGrid"></div>
+      </div>
+
+      <!-- 視圖 3：填寫預約表單 -->
+      <div id="bookingView" hidden>
+        <div class="booking-head">
+          <button type="button" class="back-btn" id="backBtn" aria-label="返回時段清單">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 12H5"/>
+              <path d="M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <div class="booking-head-text">
+            <span class="tag">booking ♡</span>
+            <h3>確認預約資訊</h3>
+          </div>
+        </div>
+
+        <dl class="modal-info">
+          <dt>日期</dt><dd id="mDate">—</dd>
+          <dt>時間</dt><dd id="mTime">—</dd>
+        </dl>
+
+        <form id="bookForm" novalidate>
+          <div class="field">
+            <span class="field-label">遊戲 ID</span>
+            <input type="text" name="name" required maxlength="40" placeholder="例：Tataru Taru" />
+          </div>
+          <div class="field">
+            <span class="field-label">伺服器</span>
+            <div class="cselect" data-name="server" data-placeholder="請選擇 server">
+              <button type="button" class="cselect-trigger">
+                <span class="cselect-label placeholder">請選擇 server</span>
+                <svg class="cselect-arrow" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M1 1l6 7 6-7"/>
+                </svg>
+              </button>
+              <ul class="cselect-options" role="listbox">
+                <li data-value="伊弗利特"><span class="opt-text">伊弗利特</span><span class="opt-tag"></span></li>
+                <li data-value="鳳凰"><span class="opt-text">鳳凰</span><span class="opt-tag"></span></li>
+                <li data-value="利維坦"><span class="opt-text">利維坦</span><span class="opt-tag"></span></li>
+              </ul>
+              <input type="hidden" name="server" />
+            </div>
+          </div>
+          <div class="field">
+            <span class="field-label">
+              Gmail
+              <span class="hint" tabindex="0" aria-label="說明">
+                ?
+                <span class="hint-tip">Email 僅用於發送預約成功通知信，如果不方便留下個資，也可以選擇留空沒關係喔！</span>
+              </span>
+            </span>
+            <input type="email" name="email" placeholder="example@gmail.com" />
+          </div>
+          <div class="field">
+            <span class="field-label">座位</span>
+            <div class="cselect" data-name="seat" data-placeholder="請選擇 seat">
+              <button type="button" class="cselect-trigger">
+                <span class="cselect-label placeholder">請選擇 seat</span>
+                <svg class="cselect-arrow" viewBox="0 0 14 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M1 1l6 7 6-7"/>
+                </svg>
+              </button>
+              <ul class="cselect-options" role="listbox">
+                <li data-value="樓下"><span class="opt-text">樓下</span><span class="opt-tag"></span></li>
+                <li data-value="樓上"><span class="opt-text">樓上</span><span class="opt-tag"></span></li>
+              </ul>
+              <input type="hidden" name="seat" />
+            </div>
+          </div>
+
+          <div class="modal-msg" id="formMsg" hidden></div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-cancel" id="formCancel">取消</button>
+            <button type="submit" class="btn btn-submit">送出預約</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ============== Confirm Modal ============== -->
+<div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+  <div class="modal-bg" data-cclose></div>
+  <div class="modal-card modal-card-confirm">
+    <span class="tag">final check ✿</span>
+    <h2 id="confirmTitle">最後確認</h2>
+    <p class="confirm-sub">送出後將佔用此時段，請最後確認以下資訊 ♡</p>
+
+    <dl class="modal-info confirm-info" id="confirmInfo"></dl>
+
+    <div class="modal-msg" id="confirmMsg" hidden></div>
+
+    <div class="modal-actions">
+      <button type="button" class="btn btn-cancel" data-cclose>回去修改</button>
+      <button type="button" class="btn btn-submit" id="confirmSubmit">確認送出</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== Loader ============== -->
+<div class="loader" id="loader">
+  <span class="loader-flower">✿</span>
+  <span class="loader-text" id="loaderText">loading…</span>
+</div>
+
+<script>
+(() => {
+  // ============ 設定 ============
+  // ※ 部署 GAS Web App 後，把網址貼到下面這個變數
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbyU3YQ3h93Ncixpt8nOC3hlbTMMcePPJdwWjomNUwMiwKf75QYVr31sjVOWkoRPcpKnGg/exec';
+
+  // ============ 狀態 ============
+  const state = {
+    slots: [],            // 從 API 取得的可預約時段
+    byDate: new Map(),    // dateStr -> [slot...]
+    cursor: new Date(),   // 行事曆當前顯示月份
+    selectedDate: null,
+    selectedSlot: null,
+  };
+
+  // ============ DOM helpers ============
+  const $ = sel => document.querySelector(sel);
+  const calMonth    = $('#calMonth');
+  const calGrid     = $('#calGrid');
+  const slotEmpty   = $('#slotEmpty');
+  const slotContent = $('#slotContent');
+  const slotDate    = $('#slotDate');
+  const slotDow     = $('#slotDow');
+  const slotGrid    = $('#slotGrid');
+  const bookingView = $('#bookingView');
+  const backBtn     = $('#backBtn');
+  const formCancel  = $('#formCancel');
+  const mDate       = $('#mDate');
+  const mTime       = $('#mTime');
+  const bookForm    = $('#bookForm');
+  const formMsg     = $('#formMsg');
+  // confirm modal
+  const confirmModal  = $('#confirmModal');
+  const confirmInfo   = $('#confirmInfo');
+  const confirmMsg    = $('#confirmMsg');
+  const confirmSubmit = $('#confirmSubmit');
+  // loader
+  const loader     = $('#loader');
+  const loaderText = $('#loaderText');
+
+  // ============ Util ============
+  const pad = n => String(n).padStart(2, '0');
+  const fmtDate = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const isSameDate = (a, b) =>
+    a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+  const monthLabelEN = ['january','february','march','april','may','june',
+                        'july','august','september','october','november','december'];
+  const dowEN = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+
+  // "21:10:30" → "PM 09:10"
+  function formatAMPM(timeStr) {
+    const [hh, mm] = String(timeStr || '').split(':').map(Number);
+    if (Number.isNaN(hh)) return String(timeStr || '');
+    const isPM = hh >= 12;
+    let h12 = hh % 12;
+    if (h12 === 0) h12 = 12;
+    return `${isPM ? 'PM' : 'AM'} ${String(h12).padStart(2,'0')}:${String(mm || 0).padStart(2,'0')}`;
+  }
+
+  function showLoader(text='loading…') {
+    loaderText.textContent = text;
+    loader.classList.add('show');
+  }
+  function hideLoader() {
+    loader.classList.remove('show');
+  }
+
+  // ============ View 切換（含展開動畫） ============
+  function animatePanelTo(targetView) {
+    const panel = document.getElementById('slotPanel');
+    const startH = panel.getBoundingClientRect().height;
+
+    // 找出目前正在顯示的 view
+    let currentView = null;
+    if (!bookingView.hidden) currentView = bookingView;
+    else if (!slotContent.hidden) currentView = slotContent;
+    else if (!slotEmpty.hidden) currentView = slotEmpty;
+
+    // 切換 hidden — 只有 target 顯示
+    slotEmpty.hidden   = (targetView !== slotEmpty);
+    slotContent.hidden = (targetView !== slotContent);
+    bookingView.hidden = (targetView !== bookingView);
+
+    if (currentView === targetView) return; // 同一個 view，跳過動畫
+
+    const endH = panel.getBoundingClientRect().height;
+
+    // 高度過渡（panel 自身展開 / 收縮）
+    if (Math.abs(startH - endH) > 1) {
+      panel.style.overflow = 'hidden';
+      panel.style.height = startH + 'px';
+      void panel.offsetHeight;          // 強制 reflow
+      panel.style.transition = 'height 0.45s cubic-bezier(.2, .8, .2, 1)';
+      panel.style.height = endH + 'px';
+      setTimeout(() => {
+        panel.style.height = '';
+        panel.style.transition = '';
+        panel.style.overflow = '';
+      }, 480);
+    }
+
+    // 新 view 內容淡入 + 微下滑
+    targetView.classList.remove('view-entering');
+    void targetView.offsetWidth;
+    targetView.classList.add('view-entering');
+    setTimeout(() => targetView.classList.remove('view-entering'), 600);
+  }
+
+  // ============ 自製下拉選單 ============
+  class CustomSelect {
+    constructor(root) {
+      this.root      = root;
+      this.placeholder = root.dataset.placeholder || '請選擇';
+      this.trigger   = root.querySelector('.cselect-trigger');
+      this.label     = root.querySelector('.cselect-label');
+      this.optionsEl = root.querySelector('.cselect-options');
+      this.input     = root.querySelector('input[type="hidden"]');
+
+      this.trigger.addEventListener('click', e => {
+        e.stopPropagation();
+        this.toggle();
+      });
+
+      this.optionsEl.addEventListener('click', e => {
+        const li = e.target.closest('li');
+        if (!li || li.classList.contains('disabled')) return;
+        const text = li.querySelector('.opt-text').textContent;
+        this.select(li.dataset.value, text);
+      });
+
+      // 點外面關閉 / Esc 關閉
+      document.addEventListener('click', e => {
+        if (!root.contains(e.target)) this.close();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') this.close();
+      });
+    }
+
+    toggle() {
+      // 同時只開一個下拉
+      document.querySelectorAll('.cselect.open').forEach(el => {
+        if (el !== this.root) el.classList.remove('open');
+      });
+      this.root.classList.toggle('open');
+    }
+    close() { this.root.classList.remove('open'); }
+
+    select(value, text) {
+      this.input.value = value;
+      this.label.textContent = text;
+      this.label.classList.remove('placeholder');
+      this.optionsEl.querySelectorAll('li').forEach(li => {
+        li.classList.toggle('selected', li.dataset.value === value);
+      });
+      this.close();
+    }
+
+    reset() {
+      this.input.value = '';
+      this.label.textContent = this.placeholder;
+      this.label.classList.add('placeholder');
+      this.optionsEl.querySelectorAll('li').forEach(li => li.classList.remove('selected'));
+      this.close();
+    }
+
+    setOptionDisabled(value, disabled, suffix = '') {
+      const li = this.optionsEl.querySelector(`li[data-value="${value}"]`);
+      if (!li) return;
+      li.classList.toggle('disabled', disabled);
+      const tagEl = li.querySelector('.opt-tag');
+      if (tagEl) tagEl.textContent = disabled ? suffix : '';
+    }
+
+    enableAll() {
+      this.optionsEl.querySelectorAll('li').forEach(li => {
+        li.classList.remove('disabled');
+        const tagEl = li.querySelector('.opt-tag');
+        if (tagEl) tagEl.textContent = '';
+      });
+    }
+  }
+
+  const serverSelect = new CustomSelect(document.querySelector('.cselect[data-name="server"]'));
+  const seatSelect   = new CustomSelect(document.querySelector('.cselect[data-name="seat"]'));
+
+  // ============ 取資料 ============
+  async function fetchSlots() {
+    showLoader('fetching slots…');
+    try {
+      const res = await fetch(GAS_URL, { redirect: 'follow' });
+      const data = await res.json();
+      state.slots = Array.isArray(data) ? data : [];
+      state.byDate = new Map();
+      for (const s of state.slots) {
+        if (!state.byDate.has(s.date)) state.byDate.set(s.date, []);
+        state.byDate.get(s.date).push(s);
+      }
+      // 預設將游標跳到「最早一個有資料的月份」
+      if (state.slots.length) {
+        const first = state.slots[0].date;
+        const [fy, fm] = first.split('-').map(Number);
+        const today = new Date();
+        const cur = new Date(today.getFullYear(), today.getMonth(), 1);
+        const target = new Date(fy, fm - 1, 1);
+        if (target > cur) state.cursor = target;
+      }
+    } catch (err) {
+      console.error('fetchSlots failed:', err);
+      state.slots = [];
+      state.byDate = new Map();
+    } finally {
+      hideLoader();
+    }
+  }
+
+  // ============ 行事曆 ============
+  function renderCalendar() {
+    const y = state.cursor.getFullYear();
+    const m = state.cursor.getMonth();   // 0-11
+    const today = new Date();
+    const firstDay = new Date(y, m, 1);
+    const lastDay = new Date(y, m + 1, 0);
+    const firstDow = firstDay.getDay();   // 0=Sun
+    const daysInMonth = lastDay.getDate();
+    const prevLast = new Date(y, m, 0).getDate();
+
+    calMonth.innerHTML =
+      `${y} / ${pad(m+1)}<small>${monthLabelEN[m]}</small>`;
+
+    calGrid.innerHTML = '';
+    // 6 row × 7 col = 42 格
+    const totalCells = 42;
+
+    for (let i = 0; i < totalCells; i++) {
+      const cellIndex = i - firstDow;       // 0..daysInMonth-1 為當月
+      let cellDate, isOther = false;
+
+      if (cellIndex < 0) {
+        cellDate = new Date(y, m - 1, prevLast + cellIndex + 1);
+        isOther = true;
+      } else if (cellIndex >= daysInMonth) {
+        cellDate = new Date(y, m + 1, cellIndex - daysInMonth + 1);
+        isOther = true;
+      } else {
+        cellDate = new Date(y, m, cellIndex + 1);
+      }
+
+      const ds = fmtDate(cellDate);
+      const dayOfMonth = cellDate.getDate();
+      const dateSlots = state.byDate.get(ds) || [];
+      const slotCount = dateSlots.length;        // 該日「可選時段」的數量（不是座位數）
+      const isPast = cellDate < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const isToday = isSameDate(cellDate, today);
+      const isAvailable = !isPast && slotCount > 0;
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'day';
+      btn.dataset.date = ds;
+
+      if (isOther) btn.classList.add('day-other');
+      if (isPast)  btn.classList.add('day-past');
+      if (isToday) btn.classList.add('day-today');
+
+      if (isAvailable && !isOther) {
+        btn.classList.add('day-avail');
+        // 多於一個時段 → 兩個點；只剩一個時段 → 一個點
+        if (slotCount >= 2) btn.classList.add('has-2');
+      }
+
+      if (state.selectedDate === ds && isAvailable) {
+        btn.classList.add('day-selected');
+      }
+
+      btn.innerHTML = `<span class="day-num">${dayOfMonth}</span>`;
+
+      if (isAvailable && !isOther) {
+        btn.addEventListener('click', () => selectDate(ds));
+      } else {
+        btn.disabled = true;
+      }
+
+      calGrid.appendChild(btn);
+    }
+  }
+
+  // ============ 切換日期 ============
+  function selectDate(ds) {
+    state.selectedDate = ds;
+    state.selectedSlot = null;
+    state.pendingPayload = null;
+    showLoader('loading slots…');
+    setTimeout(() => {
+      renderCalendar();
+      renderSlots(ds);
+      hideLoader();
+    }, 280);
+  }
+
+  // ============ 時段渲染 ============
+  function renderSlots(ds) {
+    const list = (state.byDate.get(ds) || [])
+      .slice()
+      .sort((a, b) => a.gameDay - b.gameDay);
+
+    if (!list.length) {
+      animatePanelTo(slotEmpty);
+      return;
+    }
+
+    // 先填內容（slotContent 還可能是 hidden 狀態，但仍可寫入）
+    const d = new Date(ds + 'T00:00:00+08:00');
+    const yy = d.getFullYear();
+    const mm = d.getMonth() + 1;
+    const dd = d.getDate();
+    slotDate.textContent = `${yy} 年 ${mm} 月 ${dd} 日`;
+    slotDow.textContent  = dowEN[d.getDay()];
+
+    slotGrid.innerHTML = '';
+    list.forEach(s => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'slot-btn';
+      btn.innerHTML = `
+        <span class="et">ET 09:00</span>
+        <span class="real">${formatAMPM(s.time)}</span>
+        <span class="rest ${s.available === 1 ? 'one' : ''}">餘 ${s.available} 桌</span>
+      `;
+      btn.addEventListener('click', () => openBookingView(s));
+      slotGrid.appendChild(btn);
+    });
+
+    // 切換到列表 view（含展開動畫）
+    animatePanelTo(slotContent);
+  }
+
+  // ============ Booking view（內嵌表單） ============
+  function openBookingView(slot) {
+    state.selectedSlot = slot;
+    mDate.textContent = slot.date;
+    mTime.textContent = formatAMPM(slot.time) + ' (UTC+8)';
+
+    bookForm.reset();
+    serverSelect.reset();
+    seatSelect.reset();
+    seatSelect.enableAll();
+
+    // 座位互斥：另一組已選的座位禁用、自動選剩下的
+    const seats = slot.seats || {};
+    const takenSeat = seats.A || seats.B || '';
+    if (takenSeat === '樓下' || takenSeat === '樓上') {
+      seatSelect.setOptionDisabled(takenSeat, true);    // 禁用、不加標籤
+      const onlySeat = takenSeat === '樓下' ? '樓上' : '樓下';
+      seatSelect.select(onlySeat, onlySeat);
+    }
+
+    formMsg.hidden = true;
+    formMsg.textContent = '';
+    formMsg.className = 'modal-msg';
+
+    // 展開動畫切換到表單 view
+    animatePanelTo(bookingView);
+
+    setTimeout(() => bookForm.querySelector('input[name="name"]').focus(), 500);
+  }
+
+  function backToList() {
+    state.selectedSlot = null;
+    state.pendingPayload = null;
+    if (state.selectedDate) {
+      renderSlots(state.selectedDate);  // 內部會 animatePanelTo(slotContent)
+    } else {
+      animatePanelTo(slotEmpty);
+    }
+  }
+
+  backBtn.addEventListener('click', backToList);
+  formCancel.addEventListener('click', backToList);
+
+  // ============ Confirm Modal ============
+  function openConfirmModal(payload) {
+    confirmInfo.innerHTML = `
+      <dt>日期</dt><dd>${payload.date}</dd>
+      <dt>時間</dt><dd>${formatAMPM(payload.time)} (UTC+8)</dd>
+      <dt>遊戲 ID</dt><dd>${escapeHtml(payload.name)}</dd>
+      <dt>伺服器</dt><dd>${escapeHtml(payload.server)}</dd>
+      <dt>Gmail</dt><dd>${payload.email ? escapeHtml(payload.email) : '<span style="opacity:0.5;">—（未填）</span>'}</dd>
+      <dt>座位</dt><dd>${escapeHtml(payload.seat)}</dd>
+    `;
+    confirmMsg.hidden = true;
+    confirmMsg.textContent = '';
+    confirmMsg.className = 'modal-msg';
+    confirmSubmit.disabled = false;
+    confirmModal.classList.add('open');
+  }
+  function closeConfirmModal() {
+    confirmModal.classList.remove('open');
+  }
+  function escapeHtml(s) {
+    return String(s ?? '').replace(/[&<>"']/g, c =>
+      ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+
+  confirmModal.addEventListener('click', e => {
+    if (e.target.matches('[data-cclose]')) closeConfirmModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && confirmModal.classList.contains('open')) closeConfirmModal();
+  });
+
+  // ============ 欄位錯誤標示 ============
+  function flashFieldError(name) {
+    // 優先找 cselect 容器（裡面有同名 hidden input，要避免抓到那個）
+    let el = bookForm.querySelector(`.cselect[data-name="${name}"]`);
+    if (!el) el = bookForm.querySelector(`input[name="${name}"]:not([type="hidden"])`);
+    if (!el) return;
+    el.classList.remove('field-error');
+    void el.offsetWidth;            // 重啟動畫
+    el.classList.add('field-error');
+    setTimeout(() => el.classList.remove('field-error'), 1800);
+  }
+
+  // ============ 送出 (form submit → 開確認 modal) ============
+  bookForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!state.selectedSlot) return;
+
+    const fd = new FormData(bookForm);
+    const payload = {
+      gameDayID: String(state.selectedSlot.gameDay),
+      month:     state.selectedSlot.month,
+      date:      state.selectedSlot.date,
+      time:      state.selectedSlot.time,
+      name:      (fd.get('name') || '').trim(),
+      server:    fd.get('server') || '',
+      email:     (fd.get('email') || '').trim(),
+      seat:      fd.get('seat') || '',
+    };
+
+    // 必填：name / server / seat
+    const missing = [];
+    if (!payload.name)   missing.push('name');
+    if (!payload.server) missing.push('server');
+    if (!payload.seat)   missing.push('seat');
+
+    // email 為選填；若有填，需驗證格式
+    if (payload.email) {
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(payload.email)) missing.push('email');
+    }
+
+    if (missing.length > 0) {
+      missing.forEach(flashFieldError);
+      return;
+    }
+
+    state.pendingPayload = payload;
+    openConfirmModal(payload);
+  });
+
+  // ============ 確認 modal 的「確認送出」→ 真正 POST ============
+  confirmSubmit.addEventListener('click', async () => {
+    const payload = state.pendingPayload;
+    if (!payload) return;
+
+    confirmSubmit.disabled = true;
+    showLoader('sending…');
+    try {
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        redirect: 'follow',
+      });
+      let result = null;
+      try { result = await res.json(); } catch { /* GAS 偶爾回非 JSON */ }
+
+      if (result && result.ok === false) {
+        confirmMsg.hidden = false;
+        confirmMsg.className = 'modal-msg error';
+        confirmMsg.textContent = result.error || '送出失敗。';
+        confirmSubmit.disabled = false;
+        return;
+      }
+
+      confirmMsg.hidden = false;
+      confirmMsg.className = 'modal-msg success';
+      confirmMsg.textContent = '預約成功，等你來坐坐 ✿';
+
+      setTimeout(async () => {
+        closeConfirmModal();
+        state.selectedSlot = null;
+        state.pendingPayload = null;
+        await fetchSlots();
+        renderCalendar();
+        if (state.selectedDate) {
+          renderSlots(state.selectedDate);   // 動畫切回列表
+        } else {
+          animatePanelTo(slotEmpty);
+        }
+      }, 1200);
+    } catch (err) {
+      console.error(err);
+      confirmMsg.hidden = false;
+      confirmMsg.className = 'modal-msg error';
+      confirmMsg.textContent = '送出失敗，請再試一次。';
+      confirmSubmit.disabled = false;
+    } finally {
+      hideLoader();
+    }
+  });
+
+  // ============ 月份切換 ============
+  $('#prevMonth').addEventListener('click', () => {
+    state.cursor = new Date(state.cursor.getFullYear(), state.cursor.getMonth() - 1, 1);
+    renderCalendar();
+  });
+  $('#nextMonth').addEventListener('click', () => {
+    state.cursor = new Date(state.cursor.getFullYear(), state.cursor.getMonth() + 1, 1);
+    renderCalendar();
+  });
+
+  // ============ 啟動 ============
+  (async function init() {
+    await fetchSlots();
+    renderCalendar();
+  })();
+})();
+</script>
+</body>
+</html>

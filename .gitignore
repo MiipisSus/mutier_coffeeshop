@@ -1,0 +1,32 @@
+# ───────── OS ─────────
+.DS_Store
+Thumbs.db
+
+# ───────── Editors / IDE ─────────
+.vscode/
+.idea/
+*.swp
+
+# ───────── Claude Code 內部狀態（不公開）─────────
+.claude/
+skills-lock.json
+
+# ───────── Node ─────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ───────── Build 輸出 ─────────
+dist/
+build/
+
+# ───────── 環境變數 / 密鑰 ─────────
+.env
+.env.*
+!.env.example
+
+# ───────── 雜項 ─────────
+*.log
+.cache/

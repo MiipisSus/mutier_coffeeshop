@@ -1,0 +1,17 @@
+{
+  "name": "coffee-shop",
+  "version": "1.0.0",
+  "description": "糖雲咖啡 Sugar Cloud Café — Tailwind workspace",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n css,server -c blue,magenta \"npm:dev:css\" \"npm:dev:server\"",
+    "dev:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "dev:server": "live-server --port=5500 --open=index.html --no-browser",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
+    "tailwindcss": "^3.4.19"
+  }
+}
