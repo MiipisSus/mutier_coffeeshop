@@ -18,6 +18,13 @@ gsap.fromTo(
   },
 );
 
+gsap.to(".m-icon", {
+  rotate: 360,
+  duration: 4,
+  repeat: -1,
+  ease: "linear",
+});
+
 /* hero 背景視差：scroll 時背景往下飄一點，看起來移動比頁面慢 */
 gsap.fromTo(
   ".hero-bg",
@@ -52,11 +59,11 @@ gsap.fromTo(
 
 /* staff 成員視差：每列獨立綁自己的 ScrollTrigger */
 gsap.utils.toArray(".staff-row").forEach((row) => {
-  const target = row.querySelector(".member-headshot");
+  const target = row.querySelector(".member-headshot img");
   if (!target) return;
   gsap.fromTo(
     target,
-    { yPercent: -50 },
+    { yPercent: -30 },
     {
       yPercent: 50,
       ease: "none",
