@@ -44,7 +44,7 @@ gsap.fromTo(
 /* story 主圖視差：當 #story 進入視窗時開始位移 */
 gsap.fromTo(
   ".story-img",
-  { yPercent: -50 },
+  { yPercent: -30 },
   {
     yPercent: 50,
     ease: "none",
@@ -65,7 +65,7 @@ gsap.utils.toArray(".staff-row").forEach((row) => {
     target,
     { yPercent: -30 },
     {
-      yPercent: 50,
+      yPercent: 30,
       ease: "none",
       scrollTrigger: {
         trigger: row, // ← 每列以自己為 trigger
@@ -76,3 +76,37 @@ gsap.utils.toArray(".staff-row").forEach((row) => {
     },
   );
 });
+
+/* menu 服務區 3 張圖視差（每張各自綁自己的位置） */
+gsap.utils.toArray(".menu-img").forEach((img) => {
+  gsap.fromTo(
+    img,
+    { yPercent: -15 },
+    {
+      yPercent: 15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: img, // 每張用自己當 trigger
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    },
+  );
+});
+
+/* visit 梯形遮罩圖視差 */
+gsap.fromTo(
+  ".visit-img",
+  { yPercent: -15 },
+  {
+    yPercent: 15,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".visit-img", // 用圖片本身當 trigger（不是整個 #visit）
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    },
+  },
+);
