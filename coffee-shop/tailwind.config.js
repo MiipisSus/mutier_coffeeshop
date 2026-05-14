@@ -19,7 +19,7 @@ module.exports = {
         butter:          '#F4D9A4',
       },
       fontFamily: {
-        display: ['Fraunces', 'serif'],
+        display: ['Fraunces', 'Shippori Mincho', 'serif'],
         body:    ['Nunito', 'Klee One', 'sans-serif'],
         hand:    ['Caveat', 'Klee One', 'cursive'],
       },

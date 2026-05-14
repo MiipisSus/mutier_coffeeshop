@@ -13,7 +13,7 @@
   <link href="dist/output.css" rel="stylesheet">
 </head>
 
-<body class="relative min-h-screen pt-[132px] px-6 pb-[60px]">
+<body class="relative min-h-screen pt-32 px-6 pb-16">
 
   <header
     class="fixed top-0 left-0 right-0 z-50 py-5 px-12 flex items-center justify-between bg-cream backdrop-blur-md border-b-2 border-dashed border-milk-tea/80 max-md:px-6 max-md:py-4">
@@ -37,96 +37,96 @@
       href="booking.html" aria-hidden="true" tabindex="-1">訂位 RESERVE</a>
   </header>
 
-  <main class="max-w-[1280px] mx-auto relative z-[1]">
+  <main class="max-w-7xl mx-auto relative z-10">
     <div
-      class="grid grid-cols-[minmax(180px,220px)_minmax(300px,1fr)_1.1fr] gap-8 items-start max-[1080px]:grid-cols-[minmax(180px,200px)_1fr] max-[720px]:grid-cols-1">
+      class="grid grid-cols-[minmax(180px,220px)_minmax(300px,1fr)_1.1fr] gap-8 items-start max-lg:grid-cols-[minmax(180px,200px)_1fr] max-md:grid-cols-1">
 
       <!-- ============== Title sidebar ============== -->
       <aside
-        class="sticky top-[110px] py-2.5 pr-5 border-r border-dashed border-coffee/20 max-[1080px]:col-auto max-[720px]:static max-[720px]:border-r-0 max-[720px]:border-b max-[720px]:border-dashed max-[720px]:border-coffee/20 max-[720px]:pb-5 max-[720px]:pr-0 max-[720px]:mb-1 max-[720px]:text-center max-[720px]:col-span-full">
-        <span class="block font-hand text-blush text-[22px] font-semibold mb-2 tracking-wide">reservation ✿</span>
-        <h1
-          class="font-display font-normal text-[clamp(32px,3.5vw,44px)] leading-[1.05] tracking-tight text-coffee mb-[22px]">
-          慢慢來，<br><em class="not-italic font-hand text-blush font-bold">等你</em>
+        class="sticky top-28 py-2.5 pr-5 border-r border-dashed border-coffee/20 max-lg:col-auto max-md:static max-md:border-r-0 max-md:border-b max-md:border-dashed max-md:border-coffee/20 max-md:pb-5 max-md:pr-0 max-md:mb-1 max-md:text-center max-md:col-span-full">
+        <span class="block font-hand text-blush text-2xl font-semibold mb-2 tracking-wide">reservation ✿</span>
+        <h1 class="font-display font-normal text-[clamp(32px,3.5vw,44px)] leading-snug tracking-tight text-coffee mb-6">
+          慢慢來，<br>找個位置<em class="not-italic font-hand text-blush font-bold">坐吧</em>
         </h1>
-        <p
-          class="text-coffee-soft text-[13.5px] leading-[1.85] mb-[18px] max-[720px]:max-w-[380px] max-[720px]:mx-auto">
+        <p class="text-coffee-soft text-sm leading-loose mb-5 max-md:max-w-sm max-md:mx-auto">
           選一個日子，<br>
           挑一個時段，<br>
           留一張小桌給你。
         </p>
-        <p class="font-hand text-sage text-lg font-semibold leading-snug">每個時段最多<br>兩組客人 ♡</p>
       </aside>
 
       <!-- ============== Calendar ============== -->
-      <section
-        class="bg-cream-soft rounded-[28px] p-7 shadow-soft border border-coffee/5 max-[540px]:p-[18px_22px] max-[540px]:rounded-[22px]">
-        <div class="flex items-center justify-between mb-[18px]">
-          <button
-            class="w-[38px] h-[38px] border-[1.5px] border-coffee/20 rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-[0.25s] hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5"
-            id="prevMonth" aria-label="上個月">‹</button>
-          <div
-            class="inline-flex items-baseline gap-2 font-display font-medium text-2xl text-coffee tracking-wider leading-none max-[540px]:text-xl"
-            id="calMonth">
-            —
-            <small>—</small>
+      <div class="flex flex-col gap-4">
+        <section class="bg-cream-soft rounded-xl p-7 shadow-soft border border-coffee/5 max-sm:p-5 max-sm:rounded-2xl">
+          <div class="flex items-center justify-between mb-5">
+            <button
+              class="size-10 border border-milk-tea-deep rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-300 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5"
+              id="prevMonth" aria-label="上個月"><img src="assets/icons/arrow_left.svg" alt=""></button>
+            <div
+              class="inline-flex items-baseline gap-2 font-display font-medium text-2xl text-coffee tracking-wider leading-none max-sm:text-xl"
+              id="calMonth">
+              —
+              <small>—</small>
+            </div>
+            <button
+              class="size-10 border border-milk-tea-deep rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-300 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5"
+              id="nextMonth" aria-label="下個月"><img src="assets/icons/arrow_right.svg" alt=""></button>
           </div>
-          <button
-            class="w-[38px] h-[38px] border-[1.5px] border-coffee/20 rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-[0.25s] hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5"
-            id="nextMonth" aria-label="下個月">›</button>
-        </div>
 
-        <div
-          class="grid grid-cols-7 gap-1 mb-2 [&_span]:font-hand [&_span]:text-milk-tea-deep [&_span]:text-base [&_span]:text-center [&_span]:py-1.5 [&_span]:font-semibold [&_span]:tracking-wide [&_span.we]:text-blush">
-          <span class="we">日</span><span>一</span><span>二</span>
-          <span>三</span><span>四</span><span>五</span><span class="we">六</span>
-        </div>
-        <div class="grid grid-cols-7 gap-1" id="calGrid"></div>
+          <div
+            class="grid grid-cols-7 gap-1 mb-2 [&_span]:font-hand [&_span]:text-milk-tea-deep [&_span]:text-base [&_span]:text-center [&_span]:py-1.5 [&_span]:font-semibold [&_span]:tracking-wide [&_span.we]:text-blush">
+            <span class="we">日</span><span>一</span><span>二</span>
+            <span>三</span><span>四</span><span>五</span><span class="we">六</span>
+          </div>
+          <div class="grid grid-cols-7 gap-1" id="calGrid"></div>
 
-        <div
-          class="mt-[18px] pt-4 border-t border-dashed border-coffee/15 flex gap-[18px] text-[12.5px] text-coffee-soft flex-wrap items-center">
-          <span class="inline-flex items-center gap-1.5"><span
-              class="w-[14px] h-[14px] rounded bg-pink-mist"></span>有空位</span>
-          <span class="inline-flex items-center gap-1.5"><span
-              class="w-[14px] h-[14px] rounded bg-coffee"></span>已選</span>
-          <span class="inline-flex items-center gap-1.5"><span
-              class="w-[14px] h-[14px] rounded bg-transparent shadow-[inset_0_0_0_1.5px_theme(colors.milk-tea-deep)]"></span>今天</span>
-        </div>
-      </section>
+          <div
+            class="mt-5 pt-4 border-t border-dashed border-coffee/15 flex gap-5 text-xs text-coffee-soft flex-wrap items-center">
+            <span class="inline-flex items-center gap-1.5"><span class="size-3.5 rounded bg-pink-mist"></span>有空位</span>
+            <span class="inline-flex items-center gap-1.5"><span class="size-3.5 rounded bg-coffee"></span>已選</span>
+            <span class="inline-flex items-center gap-1.5"><span
+                class="size-3.5 rounded bg-transparent shadow-[inset_0_0_0_1.5px_theme(colors.milk-tea-deep)]"></span>今天</span>
+          </div>
+        </section>
+
+        <!-- ============== 行事曆下方文字標籤（自行調整） ============== -->
+        <p class="text-xs text-coffee-soft">
+          <span class="font-hand text-sage text-lg mr-2">hint ✎</span>為維持店內日光效果，可預約時間段將與<span class="text-blush">艾奧傑亞時間
+            AM 09:00</span> 對齊
+        </p>
+      </div>
 
       <!-- ============== Slot list / Booking form ============== -->
       <section
-        class="bg-cream-soft rounded-[28px] p-7 shadow-soft border border-coffee/5 max-[540px]:p-[18px_22px] max-[540px]:rounded-[22px] max-[1080px]:col-span-full"
+        class="bg-cream-soft rounded-xl p-7 shadow-soft border border-coffee/5 max-sm:p-5 max-sm:rounded-2xl max-lg:col-span-full"
         id="slotPanel">
         <!-- 視圖 1：尚未選日期 -->
-        <div class="text-center py-[50px] px-5" id="slotEmpty">
-          <span class="inline-block text-[56px] text-milk-tea-deep opacity-40 mb-3 -rotate-12">✿</span>
-          <p class="text-coffee-soft text-sm leading-[1.8]">
-            <span class="block font-hand text-blush text-[22px] font-semibold mb-1.5">pick a day to begin ✎</span>
+        <div class="text-center py-12 px-5" id="slotEmpty">
+          <span class="inline-block text-6xl text-milk-tea-deep opacity-40 mb-3 -rotate-12">✿</span>
+          <p class="text-coffee-soft text-sm leading-loose">
+            <span class="block font-hand text-blush text-2xl font-semibold mb-1.5">pick a day to begin ✎</span>
             點選左側的粉色日期，<br>就能看到當日所有可預約時段。
           </p>
         </div>
 
         <!-- 視圖 2：時段清單 -->
         <div id="slotContent" hidden>
-          <div
-            class="flex items-baseline gap-3.5 mb-[22px] pb-[18px] border-b-2 border-dotted border-coffee/20 flex-wrap">
-            <span class="font-hand text-sage text-[22px] font-semibold">today's slots</span>
-            <h3
-              class="font-display font-medium text-[26px] text-coffee leading-[1.1] tracking-tight max-[540px]:text-[22px]"
+          <div class="flex items-baseline gap-6 mb-6 pb-5 border-b-2 border-dotted border-coffee/20 flex-wrap">
+            <span class="font-hand text-sage text-xl font-semibold">today is</span>
+            <h3 class="font-display font-medium text-xl text-coffee leading-tight tracking-tight max-sm:text-xl"
               id="slotDate">—</h3>
             <span class="font-hand text-blush text-xl font-semibold ml-auto" id="slotDow">—</span>
           </div>
           <div
-            class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-3 max-[540px]:grid-cols-[repeat(auto-fill,minmax(150px,1fr))]"
+            class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-3 max-sm:grid-cols-[repeat(auto-fill,minmax(150px,1fr))]"
             id="slotGrid"></div>
         </div>
 
         <!-- 視圖 3：填寫預約表單 -->
         <div id="bookingView" hidden>
-          <div class="flex items-center gap-4 mb-[22px] pb-[18px] border-b-2 border-dotted border-coffee/20">
+          <div class="flex items-center gap-4 mb-6 pb-5 border-b-2 border-dotted border-coffee/20">
             <button type="button"
-              class="w-10 h-10 border-[1.5px] border-coffee/20 rounded-full bg-transparent text-coffee cursor-pointer grid place-items-center transition-all duration-300 [cubic-bezier(.2,.8,.2,1)] shrink-0 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-x-[3px]"
+              class="size-10 border-2 border-coffee/20 rounded-full bg-transparent text-coffee cursor-pointer grid place-items-center transition-all duration-300 ease-out shrink-0 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-x-0.5"
               id="backBtn" aria-label="返回時段清單">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
                 stroke-linejoin="round" class="w-4 h-4" aria-hidden="true">
@@ -135,13 +135,13 @@
               </svg>
             </button>
             <div class="flex flex-col gap-0.5 leading-none">
-              <span class="font-hand text-blush text-[22px] font-semibold leading-none">booking ♡</span>
-              <h3 class="font-display font-medium text-2xl text-coffee tracking-tight leading-[1.1]">確認預約資訊</h3>
+              <span class="font-hand text-blush text-2xl font-semibold leading-none">booking ♡</span>
+              <h3 class="font-display font-medium text-2xl text-coffee tracking-tight leading-tight">確認預約資訊</h3>
             </div>
           </div>
 
           <dl
-            class="bg-cream border border-dashed border-coffee/20 rounded-[14px] py-3.5 px-[18px] mb-5 grid grid-cols-[auto_1fr] gap-x-[18px] gap-y-1.5 items-baseline text-sm [&_dt]:font-hand [&_dt]:text-milk-tea-deep [&_dt]:text-base [&_dt]:font-semibold [&_dd]:font-display [&_dd]:text-coffee [&_dd]:font-medium">
+            class="bg-cream border border-dashed border-coffee/20 rounded-xl py-3.5 px-5 mb-5 grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 items-baseline text-sm [&_dt]:font-body [&_dt]:text-milk-tea-deep [&_dt]:text-base [&_dt]:font-semibold [&_dd]:font-display [&_dd]:text-coffee [&_dd]:font-medium">
             <dt>日期</dt>
             <dd id="mDate">—</dd>
             <dt>時間</dt>
@@ -151,14 +151,14 @@
           <form id="bookForm" novalidate class="flex flex-col gap-3.5">
             <div class="field flex flex-col gap-1.5">
               <span
-                class="field-label inline-flex items-center gap-1.5 text-[12.5px] text-coffee-soft tracking-widest uppercase font-semibold leading-none">遊戲
+                class="field-label inline-flex items-center gap-1.5 text-xs text-coffee-soft tracking-widest uppercase font-semibold leading-none">遊戲
                 ID</span>
-              <input type="text" name="name" required maxlength="40" placeholder="例：Tataru Taru"
-                class="w-full border-[1.5px] border-coffee/15 rounded-xl py-[11px] px-3.5 font-body text-[14.5px] text-coffee bg-cream transition-all duration-200 outline-none focus:border-blush focus:bg-cream-soft focus:shadow-[0_0_0_4px_rgba(199,122,102,0.12)]" />
+              <input type="text" name="name" required maxlength="40" placeholder="例：毛茸茸小狗"
+                class="w-full border-2 border-coffee/15 rounded-xl py-3 px-3.5 font-body text-sm text-coffee bg-cream transition-all duration-200 outline-none focus:border-blush focus:bg-cream-soft focus:shadow-[0_0_0_4px_rgba(199,122,102,0.12)]" />
             </div>
             <div class="field flex flex-col gap-1.5">
               <span
-                class="field-label inline-flex items-center gap-1.5 text-[12.5px] text-coffee-soft tracking-widest uppercase font-semibold leading-none">伺服器</span>
+                class="field-label inline-flex items-center gap-1.5 text-xs text-coffee-soft tracking-widest uppercase font-semibold leading-none">伺服器</span>
               <div class="cselect" data-name="server" data-placeholder="請選擇 server">
                 <button type="button" class="cselect-trigger">
                   <span class="cselect-label placeholder">請選擇 server</span>
@@ -171,25 +171,29 @@
                   <li data-value="伊弗利特"><span class="opt-text">伊弗利特</span><span class="opt-tag"></span></li>
                   <li data-value="鳳凰"><span class="opt-text">鳳凰</span><span class="opt-tag"></span></li>
                   <li data-value="利維坦"><span class="opt-text">利維坦</span><span class="opt-tag"></span></li>
+                  <li data-value="迦嘍羅"><span class="opt-text">迦嘍羅</span><span class="opt-tag"></span></li>
+                  <li data-value="巴哈姆特"><span class="opt-text">巴哈姆特</span><span class="opt-tag"></span></li>
+                  <li data-value="奧汀"><span class="opt-text">奧汀</span><span class="opt-tag"></span></li>
+                  <li data-value="泰坦"><span class="opt-text">泰坦</span><span class="opt-tag"></span></li>
                 </ul>
                 <input type="hidden" name="server" />
               </div>
             </div>
             <div class="field flex flex-col gap-1.5">
               <span
-                class="field-label inline-flex items-center gap-1.5 text-[12.5px] text-coffee-soft tracking-widest uppercase font-semibold leading-none">
+                class="field-label inline-flex items-center gap-1.5 text-xs text-coffee-soft tracking-widest uppercase font-semibold leading-none">
                 Gmail
                 <span class="hint" tabindex="0" aria-label="說明">
                   ?
-                  <span class="hint-tip">Email 僅用於發送預約成功通知信，如果不方便留下個資，也可以選擇留空沒關係喔！</span>
+                  <span class="hint-tip">Email 僅用於發送預約成功通知信。<br>如果不方便留下個資，也可以選擇留空沒關係哦！</span>
                 </span>
               </span>
               <input type="email" name="email" placeholder="example@gmail.com"
-                class="w-full border-[1.5px] border-coffee/15 rounded-xl py-[11px] px-3.5 font-body text-[14.5px] text-coffee bg-cream transition-all duration-200 outline-none focus:border-blush focus:bg-cream-soft focus:shadow-[0_0_0_4px_rgba(199,122,102,0.12)]" />
+                class="w-full border-2 border-coffee/15 rounded-xl py-3 px-3.5 font-body text-sm text-coffee bg-cream transition-all duration-200 outline-none focus:border-blush focus:bg-cream-soft focus:shadow-[0_0_0_4px_rgba(199,122,102,0.12)]" />
             </div>
             <div class="field flex flex-col gap-1.5">
               <span
-                class="field-label inline-flex items-center gap-1.5 text-[12.5px] text-coffee-soft tracking-widest uppercase font-semibold leading-none">座位</span>
+                class="field-label inline-flex items-center gap-1.5 text-xs text-coffee-soft tracking-widest uppercase font-semibold leading-none">座位</span>
               <div class="cselect" data-name="seat" data-placeholder="請選擇 seat">
                 <button type="button" class="cselect-trigger">
                   <span class="cselect-label placeholder">請選擇 seat</span>
@@ -210,10 +214,10 @@
 
             <div class="mt-2 flex gap-2.5">
               <button type="button"
-                class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-[1.5px] border-coffee bg-transparent text-coffee disabled:opacity-50 disabled:cursor-not-allowed hover:bg-coffee hover:text-cream"
+                class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-2 border-coffee bg-transparent text-coffee disabled:opacity-50 disabled:cursor-not-allowed hover:bg-coffee hover:text-cream"
                 id="formCancel">取消</button>
               <button type="submit"
-                class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-none bg-coffee text-cream-soft shadow-[0_8px_18px_-8px_rgba(59,36,24,0.45)] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blush hover:-translate-y-0.5 hover:shadow-[0_12px_22px_-8px_rgba(199,122,102,0.5)]">送出預約</button>
+                class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-none bg-coffee text-cream-soft disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blush hover:-translate-y-0.5">送出預約</button>
             </div>
           </form>
         </div>
@@ -225,24 +229,24 @@
   <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
     <div class="absolute inset-0 bg-coffee/40 backdrop-blur-md" data-cclose></div>
     <div
-      class="modal-card relative bg-cream-soft rounded-[28px] py-8 px-[30px] pb-[26px] w-full max-w-[420px] max-h-[calc(100vh-40px)] overflow-y-auto shadow-warm max-[540px]:p-[22px] max-[540px]:rounded-[22px]">
-      <span class="font-hand text-blush text-[22px] font-semibold">final check ✿</span>
-      <h2 class="font-display font-medium text-3xl text-coffee my-1 mb-[18px] tracking-tight max-[540px]:text-2xl"
+      class="modal-card relative bg-cream-soft rounded-3xl py-12 px-12 pb-12 w-full max-w-md max-h-[calc(100vh-40px)] overflow-y-auto shadow-warm max-sm:p-5 max-sm:rounded-2xl">
+      <span class="font-hand text-blush text-2xl font-semibold">final check ✿</span>
+      <h2 class="font-display font-medium text-3xl text-coffee my-1 mt-3 mb-5 tracking-tight max-sm:text-2xl"
         id="confirmTitle">最後確認</h2>
-      <p class="text-[13px] text-coffee-soft mb-[18px] leading-[1.7]">送出後將佔用此時段，請最後確認以下資訊 ♡</p>
+      <p class="text-xs text-coffee-soft mb-5 leading-relaxed">送出後將佔用此時段，請最後確認以下資訊 ♡</p>
 
       <dl
-        class="bg-cream border border-dashed border-coffee/20 rounded-[14px] py-3.5 px-[18px] mb-5 grid grid-cols-[auto_1fr] gap-x-[18px] gap-y-1.5 items-baseline text-sm [&_dt]:font-hand [&_dt]:text-milk-tea-deep [&_dt]:text-base [&_dt]:font-semibold [&_dd]:font-display [&_dd]:text-coffee [&_dd]:font-medium"
+        class="bg-cream border border-dashed border-coffee/20 rounded-xl py-3.5 px-5 mb-5 grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 items-baseline text-sm [&_dt]:font-body [&_dt]:text-milk-tea-deep [&_dt]:text-base [&_dt]:font-semibold [&_dd]:font-display [&_dd]:text-coffee [&_dd]:font-medium"
         id="confirmInfo"></dl>
 
       <div class="modal-msg font-hand text-center pt-3.5 pb-1 text-lg font-semibold" id="confirmMsg" hidden></div>
 
       <div class="mt-2 flex gap-2.5">
         <button type="button"
-          class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-[1.5px] border-coffee bg-transparent text-coffee disabled:opacity-50 disabled:cursor-not-allowed hover:bg-coffee hover:text-cream"
+          class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-2 border-coffee bg-transparent text-coffee disabled:opacity-50 disabled:cursor-not-allowed hover:bg-coffee hover:text-cream"
           data-cclose>回去修改</button>
         <button type="button"
-          class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-none bg-coffee text-cream-soft shadow-[0_8px_18px_-8px_rgba(59,36,24,0.45)] disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blush hover:-translate-y-0.5 hover:shadow-[0_12px_22px_-8px_rgba(199,122,102,0.5)]"
+          class="flex-1 py-3.5 px-4 rounded-full font-body font-semibold text-sm tracking-wide cursor-pointer transition-all duration-300 border-none bg-coffee text-cream-soft disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blush hover:-translate-y-0.5"
           id="confirmSubmit">確認送出</button>
       </div>
     </div>
@@ -251,7 +255,7 @@
   <!-- ============== Loader ============== -->
   <div class="loader" id="loader">
     <span class="loader-flower">✿</span>
-    <span class="absolute bottom-[38%] font-hand text-coffee-soft text-lg tracking-wide" id="loaderText">loading…</span>
+    <span class="absolute bottom-1/3 font-hand text-coffee-soft text-lg tracking-wide" id="loaderText">loading…</span>
   </div>
 
   <script>
@@ -262,18 +266,11 @@
 
       // 進站時 loader 隨機顯示的小語
       const loadingPhrases = [
-        '吃芒狗正在翻訂位簿…',
-        '小麥正從烤箱端出鬆餅…',
-        '挑一張剛剛好的小桌…',
+        '店狗正在快速把訂位簿叼過來…',
+        '剛從烤箱端出熱騰騰的麵包…',
         '正在沖一杯熱熱的奶茶…',
-        '剛把窗簾輕輕拉開…',
-        '把店裡的小燈點亮…',
-        '杯盤一個一個擺好…',
-        '從廚房探出頭來瞧瞧…',
-        '在數還剩幾張椅子…',
-        '翻找今晚還有的時段…',
-        '把椅子推進桌子裡…',
-        '攪一攪鍋裡的湯…',
+        '把店裡的窗簾拉開…',
+        '正在來回觸摸雇員鈴…',
       ];
       const pickLoadingPhrase = () =>
         loadingPhrases[Math.floor(Math.random() * loadingPhrases.length)];
@@ -500,7 +497,7 @@
         const prevLast = new Date(y, m, 0).getDate();
 
         calMonth.innerHTML =
-          `<span class="tabular-nums">${y} / ${pad(m + 1)}</span><small class="font-hand text-blush text-lg font-semibold tracking-wide w-[88px] text-left">${monthLabelEN[m]}</small>`;
+          `<span class="tabular-nums">${y} / ${pad(m + 1)}</span><small class="font-hand text-blush text-lg font-semibold tracking-wide w-24 text-left">${monthLabelEN[m]}</small>`;
 
         calGrid.innerHTML = '';
         // 6 row × 7 col = 42 格
@@ -597,7 +594,7 @@
           btn.type = 'button';
           btn.className = 'slot-btn';
           btn.innerHTML = `
-        <span class="et">ET 09:00</span>
+        <span class="et">ET 0900</span>
         <span class="real">${formatAMPM(s.time)}</span>
         <span class="rest ${s.available === 1 ? 'one' : ''}">餘 ${s.available} 桌</span>
       `;
@@ -739,7 +736,7 @@
         if (!payload) return;
 
         confirmSubmit.disabled = true;
-        showLoader('sending…');
+        showLoader('送出中…');
         try {
           const res = await fetch(GAS_URL, {
             method: 'POST',
@@ -765,7 +762,7 @@
             closeConfirmModal();
             state.selectedSlot = null;
             state.pendingPayload = null;
-            await fetchSlots();
+            await fetchSlots(pickLoadingPhrase());
             renderCalendar();
             if (state.selectedDate) {
               renderSlots(state.selectedDate);   // 動畫切回列表
