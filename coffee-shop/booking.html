@@ -60,7 +60,7 @@
         <section class="bg-cream-soft rounded-xl p-7 shadow-soft border border-coffee/5 max-sm:p-5 max-sm:rounded-2xl">
           <div class="flex items-center justify-between mb-5">
             <button
-              class="size-10 border border-milk-tea-deep rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-300 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5"
+              class="size-10 border border-milk-tea-deep rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-300 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-coffee disabled:hover:border-milk-tea-deep disabled:hover:translate-y-0"
               id="prevMonth" aria-label="上個月"><img src="assets/icons/arrow_left.svg" alt=""></button>
             <div
               class="inline-flex items-baseline gap-2 font-display font-medium text-2xl text-coffee tracking-wider leading-none max-sm:text-xl"
@@ -69,7 +69,7 @@
               <small>—</small>
             </div>
             <button
-              class="size-10 border border-milk-tea-deep rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-300 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5"
+              class="size-10 border border-milk-tea-deep rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-300 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-coffee disabled:hover:border-milk-tea-deep disabled:hover:translate-y-0"
               id="nextMonth" aria-label="下個月"><img src="assets/icons/arrow_right.svg" alt=""></button>
           </div>
 
@@ -495,6 +495,14 @@
         const firstDow = firstDay.getDay();   // 0=Sun
         const daysInMonth = lastDay.getDate();
         const prevLast = new Date(y, m, 0).getDate();
+
+        // 切換上/下個月按鈕的 disabled 狀態：本月之前/之後若無任何 slot 即禁用
+        const thisMonthStart = `${y}-${pad(m + 1)}-01`;
+        const nextMonthStart = `${m === 11 ? y + 1 : y}-${pad(m === 11 ? 1 : m + 2)}-01`;
+        const hasPrev = state.slots.some(s => s.date < thisMonthStart);
+        const hasNext = state.slots.some(s => s.date >= nextMonthStart);
+        document.getElementById('prevMonth').disabled = !hasPrev;
+        document.getElementById('nextMonth').disabled = !hasNext;
 
         calMonth.innerHTML =
           `<span class="tabular-nums">${y} / ${pad(m + 1)}</span><small class="font-hand text-blush text-lg font-semibold tracking-wide w-24 text-left">${monthLabelEN[m]}</small>`;
