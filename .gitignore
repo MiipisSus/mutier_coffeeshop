@@ -19,8 +19,8 @@ yarn-error.log*
 pnpm-debug.log*
 
 # ───────── Build 輸出 ─────────
-dist/
 build/
+dist/*.map
 
 # ───────── 環境變數 / 密鑰 ─────────
 .env
