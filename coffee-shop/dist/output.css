@@ -1606,6 +1606,10 @@ body::after {
   max-height: calc(100vh - 40px);
 }
 
+.min-h-\[320px\] {
+  min-height: 320px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -2151,6 +2155,10 @@ body::after {
   border-color: transparent;
 }
 
+.bg-\[rgba\(255\2c 255\2c 255\2c 0\.88\)\] {
+  background-color: rgba(255,255,255,0.88);
+}
+
 .bg-black\/20 {
   background-color: rgb(0 0 0 / 0.2);
 }
@@ -2206,6 +2214,30 @@ body::after {
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.bg-\[rgba\(255\2c 255\2c 255\2c 0\.1\)\] {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.bg-\[rgba\(255\2c 255\2c 255\2c 0\.4\)\] {
+  background-color: rgba(255,255,255,0.4);
+}
+
+.bg-\[rgba\(255\2c 255\2c 255\2c 0\.5\)\] {
+  background-color: rgba(255,255,255,0.5);
+}
+
+.bg-\[rgba\(0\2c 0\2c 0\2c 0\.5\)\] {
+  background-color: rgba(0,0,0,0.5);
+}
+
+.bg-\[rgba\(0\2c 0\2c 0\2c 0\.3\)\] {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.bg-\[rgba\(0\2c 0\2c 0\2c 0\.2\)\] {
+  background-color: rgba(0,0,0,0.2);
 }
 
 .bg-\[url\(\'\.\.\/assets\/images\/hero\.jpg\'\)\] {
@@ -2649,6 +2681,12 @@ body::after {
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.backdrop-blur-\[1px\] {
+  --tw-backdrop-blur: blur(1px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
 .backdrop-blur-md {

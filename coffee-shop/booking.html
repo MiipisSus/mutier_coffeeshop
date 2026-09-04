@@ -57,7 +57,10 @@
 
       <!-- ============== Calendar ============== -->
       <div class="flex flex-col gap-4">
-        <section class="bg-cream-soft rounded-xl p-7 shadow-soft border border-coffee/5 max-sm:p-5 max-sm:rounded-2xl">
+        <section
+          class="relative overflow-hidden bg-cream-soft rounded-xl p-7 shadow-soft border border-coffee/5 max-sm:p-5 max-sm:rounded-2xl">
+          <div class="absolute inset-0 z-50 hidden rounded-xl bg-[rgba(0,0,0,0.2)]" id="calOverlay" aria-hidden="true">
+          </div>
           <div class="flex items-center justify-between mb-5">
             <button
               class="size-10 border border-milk-tea-deep rounded-full bg-transparent text-coffee text-lg cursor-pointer grid place-items-center transition-all duration-300 hover:bg-coffee hover:text-cream-soft hover:border-coffee hover:-translate-y-0.5 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-coffee disabled:hover:border-milk-tea-deep disabled:hover:translate-y-0"
@@ -73,12 +76,14 @@
               id="nextMonth" aria-label="下個月"><img src="assets/icons/arrow_right.svg" alt=""></button>
           </div>
 
-          <div
-            class="grid grid-cols-7 gap-1 mb-2 [&_span]:font-hand [&_span]:text-milk-tea-deep [&_span]:text-base [&_span]:text-center [&_span]:py-1.5 [&_span]:font-semibold [&_span]:tracking-wide [&_span.we]:text-blush">
-            <span class="we">日</span><span>一</span><span>二</span>
-            <span>三</span><span>四</span><span>五</span><span class="we">六</span>
+          <div class="relative min-h-[320px]">
+            <div
+              class="grid grid-cols-7 gap-1 mb-2 [&_span]:font-hand [&_span]:text-milk-tea-deep [&_span]:text-base [&_span]:text-center [&_span]:py-1.5 [&_span]:font-semibold [&_span]:tracking-wide [&_span.we]:text-blush">
+              <span class="we">日</span><span>一</span><span>二</span>
+              <span>三</span><span>四</span><span>五</span><span class="we">六</span>
+            </div>
+            <div class="grid grid-cols-7 gap-1" id="calGrid"></div>
           </div>
-          <div class="grid grid-cols-7 gap-1" id="calGrid"></div>
 
           <div
             class="mt-5 pt-4 border-t border-dashed border-coffee/15 flex gap-5 text-xs text-coffee-soft flex-wrap items-center">
@@ -104,8 +109,9 @@
         <div class="text-center py-12 px-5" id="slotEmpty">
           <span class="inline-block text-6xl text-milk-tea-deep opacity-40 mb-3 -rotate-12">✿</span>
           <p class="text-coffee-soft text-sm leading-loose">
-            <span class="block font-hand text-blush text-2xl font-semibold mb-1.5">pick a day to begin ✎</span>
-            點選左側的粉色日期，<br>就能看到當日所有可預約時段。
+            <span class="block font-hand text-blush text-2xl font-semibold mb-1.5" id="slotEmptyLead">pick a day to
+              begin ✎</span>
+            <span id="slotEmptyHint">點選左側的粉色日期，<br>就能看到當日所有可預約時段。</span>
           </p>
         </div>
 
@@ -289,10 +295,13 @@
       const calMonth = $('#calMonth');
       const calGrid = $('#calGrid');
       const slotEmpty = $('#slotEmpty');
+      const slotEmptyLead = $('#slotEmptyLead');
+      const slotEmptyHint = $('#slotEmptyHint');
       const slotContent = $('#slotContent');
       const slotDate = $('#slotDate');
       const slotDow = $('#slotDow');
       const slotGrid = $('#slotGrid');
+      const calOverlay = $('#calOverlay');
       const bookingView = $('#bookingView');
       const backBtn = $('#backBtn');
       const formCancel = $('#formCancel');
@@ -317,6 +326,10 @@
       const monthLabelEN = ['january', 'february', 'march', 'april', 'may', 'june',
         'july', 'august', 'september', 'october', 'november', 'december'];
       const dowEN = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+      const emptyDefaultLead = 'pick a day to begin ✎';
+      const emptyDefaultHint = '點選左側的粉色日期，<br>就能看到當日所有可預約時段。';
+      const emptyMonthLead = '本月尚無可預約時段';
+      const emptyMonthHint = '請以遊戲中招募宣傳為主';
 
       // "21:10:30" → "PM 09:10"
       function formatAMPM(timeStr) {
@@ -334,6 +347,17 @@
       }
       function hideLoader() {
         loader.classList.remove('show');
+      }
+
+      function setMonthEmptyState(isEmptyMonth) {
+        if (isEmptyMonth) {
+          slotEmptyLead.textContent = emptyMonthLead;
+          slotEmptyHint.textContent = emptyMonthHint;
+        } else {
+          slotEmptyLead.textContent = emptyDefaultLead;
+          slotEmptyHint.innerHTML = emptyDefaultHint;
+        }
+        calOverlay.classList.toggle('hidden', !isEmptyMonth);
       }
 
       // ============ View 切換（含展開動畫） ============
@@ -496,13 +520,15 @@
         const daysInMonth = lastDay.getDate();
         const prevLast = new Date(y, m, 0).getDate();
 
-        // 切換上/下個月按鈕的 disabled 狀態：本月之前/之後若無任何 slot 即禁用
+        // 上一月只允許回到「本月」為止，不開放查看更早月份
         const thisMonthStart = `${y}-${pad(m + 1)}-01`;
         const nextMonthStart = `${m === 11 ? y + 1 : y}-${pad(m === 11 ? 1 : m + 2)}-01`;
-        const hasPrev = state.slots.some(s => s.date < thisMonthStart);
+        const hasPrev = y > today.getFullYear() || (y === today.getFullYear() && m > today.getMonth());
         const hasNext = state.slots.some(s => s.date >= nextMonthStart);
+        const hasThisMonth = state.slots.some(s => s.date >= thisMonthStart && s.date < nextMonthStart);
         document.getElementById('prevMonth').disabled = !hasPrev;
         document.getElementById('nextMonth').disabled = !hasNext;
+        setMonthEmptyState(!hasThisMonth);
 
         calMonth.innerHTML =
           `<span class="tabular-nums">${y} / ${pad(m + 1)}</span><small class="font-hand text-blush text-lg font-semibold tracking-wide w-24 text-left">${monthLabelEN[m]}</small>`;
