@@ -5,22 +5,50 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script>
-    /* 瀏覽器預設會在「重新整理」或上一頁/下一頁導覽時，自動還原上次的捲動位置。
-     * 這頁大量用 GSAP ScrollTrigger 做 scrub 視差動畫，如果一重整就直接跳到
-     * 上次捲到的地方，畫面還沒排版完成（圖片/字型還沒載入撐開版面）ScrollTrigger
-     * 就會算出錯的位置，視差圖片因此卡在錯的偏移量，出現本來不該有的縫隙/跳動。
-     * 這裡搶在瀏覽器還原捲動位置之前，強制關掉自動還原、重整一律回到最頂端，
-     * 讓 ScrollTrigger 永遠是從乾淨的頂部狀態開始計算。 */
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
-    window.scrollTo(0, 0);
-    /* 保險：部分瀏覽器（尤其行動版 Safari）會在頁面「看起來」載入完之後才
-     * 執行自己的捲動還原，把上面這行早期的 scrollTo(0,0) 蓋回去。
-     * load / pageshow 都再強制歸零一次；pageshow 專門處理「上一頁/下一頁」
-     * 這種從 bfcache 還原的情境，load 事件不一定會在 bfcache 還原時觸發。 */
-    window.addEventListener("load", () => window.scrollTo(0, 0));
-    window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+    /* 目標：
+     *   1) 網址帶 #menu 進站（例如從外部連結點進來、或直接在網址列輸入）
+     *      → 照瀏覽器原生行為自動捲到 #menu 區塊
+     *   2) 頁面已經開著（不管網址列當下是不是還留著 #menu），使用者按重新整理
+     *      → 一律強制清掉錨點、捲回最頂端，不要跳去 #menu
+     *   3) 導覽列點 <a href="#menu">（頁面本來就開著）→ 正常平滑捲動，不受影響
+     *
+     * 關鍵：用 Navigation Timing API 判斷「這次載入是怎麼發生的」——
+     *   type === "reload"      → 使用者按重新整理／F5
+     *   type === "back_forward"→ 瀏覽器上一頁/下一頁（跟重整同樣有「舊捲動位置」
+     *                            的風險，這頁大量用 GSAP ScrollTrigger scrub 動畫，
+     *                            一樣容易在版面還沒撐開前就算出錯的視差位置）
+     *   type === "navigate"    → 真正的「第一次進站」（點外部連結、直接輸入網址）
+     * 只有 reload / back_forward 才強制清錨點 + 回頂端；navigate 完全不干預，
+     * 讓瀏覽器原生的「捲到 #menu」行為照常運作。
+     * (3) 不會被這裡影響，因為這段只在「頁面載入的當下」跑一次，
+     * 之後使用者點頁面內的錨點連結，是瀏覽器自己處理，跟這裡無關。 */
+    (function () {
+      var entries = performance.getEntriesByType && performance.getEntriesByType("navigation");
+      var navType = entries && entries.length ? entries[0].type : null;
+      if (navType == null && performance.navigation) {
+        // 舊版瀏覽器沒有 Navigation Timing Level 2，退回舊的 performance.navigation API
+        navType = performance.navigation.type === 1 ? "reload" : "navigate";
+      }
+
+      var isReloadOrBack = navType === "reload" || navType === "back_forward";
+
+      if (isReloadOrBack) {
+        if (location.hash) {
+          history.replaceState(null, "", location.pathname + location.search);
+        }
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+        window.scrollTo(0, 0);
+        /* 保險：部分瀏覽器（尤其行動版 Safari）會在頁面「看起來」載入完之後才
+         * 執行自己的捲動還原，把上面這行早期的 scrollTo(0,0) 蓋回去。
+         * load / pageshow 都再強制歸零一次；pageshow 專門處理從 bfcache 還原的
+         * 情境，load 事件不一定會在 bfcache 還原時觸發。 */
+        window.addEventListener("load", function () { window.scrollTo(0, 0); });
+        window.addEventListener("pageshow", function () { window.scrollTo(0, 0); });
+      }
+      // navType === "navigate"：什麼都不做，讓瀏覽器原生的「網址帶錨點 → 自動捲過去」正常運作
+    })();
   </script>
   <title>畝湯咖啡 · Mu Tier Café</title>
   <link rel="icon" type="image/png" href="assets/images/logo_mark_2.png">
