@@ -1383,6 +1383,10 @@ body::after {
   top: -18%;
 }
 
+.-top-\[25\%\] {
+  top: -25%;
+}
+
 .bottom-0 {
   bottom: 0px;
 }
@@ -1423,6 +1427,18 @@ body::after {
   top: 7rem;
 }
 
+.-top-\[40\%\] {
+  top: -40%;
+}
+
+.-top-\[30\%\] {
+  top: -30%;
+}
+
+.-top-\[20\%\] {
+  top: -20%;
+}
+
 .z-0 {
   z-index: 0;
 }
@@ -1457,11 +1473,6 @@ body::after {
 .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
-}
-
-.mx-20 {
-  margin-left: 5rem;
-  margin-right: 5rem;
 }
 
 .mb-0\.5 {
@@ -1663,12 +1674,12 @@ body::after {
   height: 130%;
 }
 
-.h-\[18px\] {
-  height: 18px;
+.h-\[150\%\] {
+  height: 150%;
 }
 
-.h-\[38px\] {
-  height: 38px;
+.h-\[18px\] {
+  height: 18px;
 }
 
 .h-\[50px\] {
@@ -1681,6 +1692,18 @@ body::after {
 
 .h-full {
   height: 100%;
+}
+
+.h-\[180\%\] {
+  height: 180%;
+}
+
+.h-\[160\%\] {
+  height: 160%;
+}
+
+.h-\[140\%\] {
+  height: 140%;
 }
 
 .max-h-\[calc\(100vh-40px\)\] {
@@ -1725,10 +1748,6 @@ body::after {
 
 .w-\[21px\] {
   width: 21px;
-}
-
-.w-\[38px\] {
-  width: 38px;
 }
 
 .w-\[40\%\] {
@@ -1988,20 +2007,6 @@ body::after {
 
 .animate-morph-slower {
   animation: morph 17s ease-in-out infinite reverse;
-}
-
-@keyframes wobbleRotate {
-  0%, 100% {
-    transform: rotate(-3deg);
-  }
-
-  50% {
-    transform: rotate(3deg);
-  }
-}
-
-.animate-wobble-rotate {
-  animation: wobbleRotate 6s ease-in-out infinite;
 }
 
 .cursor-pointer {
@@ -3026,19 +3031,14 @@ body::after {
     grid-row-start: 1;
   }
 
-  .max-md\:mx-auto {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .max-md\:mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
   .max-md\:mx-6 {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
+  }
+
+  .max-md\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .max-md\:mb-1 {
@@ -3085,20 +3085,16 @@ body::after {
     flex-direction: column;
   }
 
+  .max-md\:gap-0 {
+    gap: 0px;
+  }
+
   .max-md\:gap-10 {
     gap: 2.5rem;
   }
 
   .max-md\:gap-12 {
     gap: 3rem;
-  }
-
-  .max-md\:gap-3\.5 {
-    gap: 0.875rem;
-  }
-
-  .max-md\:gap-0 {
-    gap: 0px;
   }
 
   .max-md\:border-b {

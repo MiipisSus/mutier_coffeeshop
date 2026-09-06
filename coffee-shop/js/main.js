@@ -41,12 +41,17 @@ gsap.fromTo(
   },
 );
 
-/* story 主圖視差：當 #story 進入視窗時開始位移 */
+/* story 主圖視差：當 #story 進入視窗時開始位移
+ * 圖片本身要有夠多「超出裁切框」的緩衝，位移範圍才不會在滑到底/頂端時
+ * 把圖片邊緣露出來（見下方 HTML 的 -top-[30%] h-[160%]，跟這裡的 yPercent
+ * 要互相搭配：|yPercent| 上限 ≈ 超出裁切框比例 ÷ 圖片自身高度比例 ×100）。
+ * 原本是 -30 ~ 50，但圖片只有 -top-[10%] h-[120%] 的緩衝，範圍抓太大，
+ * 大螢幕（裁切框變大、視差移動距離跟著等比例放大）就會看到圖片邊緣。 */
 gsap.fromTo(
   ".story-img",
-  { yPercent: -30 },
+  { yPercent: -15 },
   {
-    yPercent: 50,
+    yPercent: 15,
     ease: "none",
     scrollTrigger: {
       trigger: "#story",
