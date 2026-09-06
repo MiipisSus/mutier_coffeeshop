@@ -8,6 +8,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* 手機上有些裝飾圖片（例如 story-sprite）刻意讓它探出容器邊界，
+       只溢出個幾 px，桌機看不出來，但手機捲動到底/兩側時，
+       iOS Safari 那種「彈性回彈」效果會抓到這幾 px 溢出，
+       讓整頁在捲動當下看起來左右輕微跳動、錯位。
+       overflow-x 只設在 body 不夠保險（iOS 有時不理），html 也要設一份；
+       overscroll-behavior-x 則是直接關掉左右方向的彈性回彈本身。 */
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
 
   body {
@@ -16,6 +24,7 @@
     color: theme("colors.coffee");
     line-height: 1.6;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
   body::before {
     content: "";
