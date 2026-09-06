@@ -4,6 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    /* 瀏覽器預設會在「重新整理」或上一頁/下一頁導覽時，自動還原上次的捲動位置。
+     * 這頁大量用 GSAP ScrollTrigger 做 scrub 視差動畫，如果一重整就直接跳到
+     * 上次捲到的地方，畫面還沒排版完成（圖片/字型還沒載入撐開版面）ScrollTrigger
+     * 就會算出錯的位置，視差圖片因此卡在錯的偏移量，出現本來不該有的縫隙/跳動。
+     * 這裡搶在瀏覽器還原捲動位置之前，強制關掉自動還原、重整一律回到最頂端，
+     * 讓 ScrollTrigger 永遠是從乾淨的頂部狀態開始計算。 */
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+    /* 保險：部分瀏覽器（尤其行動版 Safari）會在頁面「看起來」載入完之後才
+     * 執行自己的捲動還原，把上面這行早期的 scrollTo(0,0) 蓋回去。
+     * load / pageshow 都再強制歸零一次；pageshow 專門處理「上一頁/下一頁」
+     * 這種從 bfcache 還原的情境，load 事件不一定會在 bfcache 還原時觸發。 */
+    window.addEventListener("load", () => window.scrollTo(0, 0));
+    window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+  </script>
   <title>畝湯咖啡 · Mu Tier Café</title>
   <link rel="icon" type="image/png" href="assets/images/logo_mark_2.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
