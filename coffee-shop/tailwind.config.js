@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.html', './booking.html'],
+  content: ['./index.html', './booking.html', './js/**/*.js'],
   theme: {
     extend: {
       colors: {
@@ -32,6 +32,10 @@ module.exports = {
           '0%, 100%': { transform: 'rotate(-3deg)', borderRadius: '50% 50% 48% 52% / 52% 48% 50% 50%' },
           '50%':      { transform: 'rotate(3deg)',  borderRadius: '48% 52% 50% 50% / 48% 52% 52% 48%' },
         },
+        wobbleRotate: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%':      { transform: 'rotate(3deg)' },
+        },
         fadeSlide: {
           'to': { opacity: '1', transform: 'translateY(0)' },
         },
@@ -60,9 +64,16 @@ module.exports = {
           '0%, 100%': { boxShadow: '0 0 0 4px rgba(199, 122, 102, 0.25)' },
           '50%':      { boxShadow: '0 0 0 8px rgba(199, 122, 102, 0.05)' },
         },
+        drift: {
+          '0%, 100%': { transform: 'translate(0, 0) rotate(-2deg)' },
+          '25%':      { transform: 'translate(6px, -10px) rotate(1deg)' },
+          '50%':      { transform: 'translate(-5px, -16px) rotate(-1deg)' },
+          '75%':      { transform: 'translate(-8px, -4px) rotate(2deg)' },
+        },
       },
       animation: {
         wobble:    'wobble 6s ease-in-out infinite',
+        'wobble-rotate': 'wobbleRotate 6s ease-in-out infinite',
         float:     'float 7s ease-in-out infinite',
         rise:      'rise 3s ease-in-out infinite',
         morph:     'morph 12s ease-in-out infinite',
@@ -71,7 +82,7 @@ module.exports = {
         'spin-bean':     'beanSpin 9s ease-in-out infinite',
         'spin-bean-rev': 'beanSpin 11s ease-in-out infinite reverse',
         'spin-bean-slow':'beanSpin 13s ease-in-out infinite',
-        marquee:   'marquee 30s linear infinite',
+        marquee:   'marquee 45s linear infinite',
         'fade-slide-tag':     'fadeSlide 0.9s 0.2s ease-out forwards',
         'fade-slide-line-1':  'fadeSlide 0.9s 0.35s ease-out forwards',
         'fade-slide-line-2':  'fadeSlide 0.9s 0.5s ease-out forwards',
@@ -79,6 +90,7 @@ module.exports = {
         'fade-slide-actions': 'fadeSlide 0.9s 0.9s ease-out forwards',
         'fade-slide-visual':  'fadeSlide 1.2s 0.4s ease-out forwards',
         'pulse-ring':         'pulse2 2s infinite',
+        drift:                'drift 6s ease-in-out infinite',
       },
     },
   },

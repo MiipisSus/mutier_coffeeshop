@@ -222,19 +222,35 @@ gsap.utils.toArray("#menu .m-item").forEach((item) => {
   });
 });
 
-/* Visit 文字內容 */
-gsap.from("#visit > div:first-child > *", {
-  opacity: 0,
-  y: 30,
-  duration: 0.8,
-  ease: "power2.out",
-  stagger: 0.12,
-  scrollTrigger: {
-    trigger: "#visit",
-    start: "top 75%",
-    once: true,
-  },
-});
+/* Visit 文字內容（含訂位按鈕）
+ * 這裡試過兩種 GSAP scrollTrigger 的寫法（含加 timeout 保底），
+ * 結果都還是遇到「動畫跑完，opacity 卻定格在 0」的狀況 —— 這種
+ * .from() 在建立當下就把「要恢復到的樣子」記錄下來的機制，一旦記錄
+ * 到的值本身就不對，之後怎麼補都是補在錯的基準上。
+ * 這裡放的是「立即訂位」這種關鍵按鈕，改用不依賴 GSAP 的寫法：
+ * 預設（沒有 JS、或 JS 執行失敗）就是完全正常顯示，只有在
+ * IntersectionObserver 確實支援、且確實偵測到進入畫面時，才「額外」
+ * 加上淡入效果 —— 壞掉的話最多就是少了淡入動畫，內容本身永遠不會消失。 */
+const visitRevealTargets = document.querySelectorAll(
+  "#visit > div:first-child > *",
+);
+const visitSection = document.getElementById("visit");
+if ("IntersectionObserver" in window && visitSection && visitRevealTargets.length) {
+  visitRevealTargets.forEach((el) => el.classList.add("reveal-target", "reveal-pending"));
+  const visitObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        visitRevealTargets.forEach((el, i) => {
+          setTimeout(() => el.classList.remove("reveal-pending"), i * 120);
+        });
+        observer.disconnect();
+      });
+    },
+    { threshold: 0.15 },
+  );
+  visitObserver.observe(visitSection);
+}
 
 /* ============================================================
  * 圖片載入完成後重新測量所有 ScrollTrigger
@@ -245,3 +261,9 @@ gsap.from("#visit > div:first-child > *", {
 window.addEventListener("load", () => {
   ScrollTrigger.refresh();
 });
+
+/* 自訂 web font（Fraunces / Caveat 等）載入完成也會改變文字高度，
+ * 若晚於上面的 refresh 才換字型，一樣會讓 trigger 位置跟實際 layout 對不上。 */
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => ScrollTrigger.refresh());
+}

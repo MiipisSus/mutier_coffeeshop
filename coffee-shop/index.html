@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>畝湯咖啡 · Mu Tier Café</title>
+  <link rel="icon" type="image/png" href="assets/images/logo_mark_2.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -19,7 +20,7 @@
   <header
     class="fixed top-0 left-0 right-0 z-50 py-5 px-12 flex items-center justify-between bg-cream backdrop-blur-md border-b-2 border-dashed border-milk-tea/80 max-md:px-6 max-md:py-4">
     <a href="index.html" class="flex items-center gap-2.5 font-display font-medium text-lg md:text-xl lg:text-xl text-coffee tracking-wide">
-      <div class="logo-mark"></div>
+      <img src="assets/images/logo_mark_2.png" alt="畝湯咖啡 logo" class="w-[50px] h-[50px] object-contain" />
       <div>
         畝湯咖啡
         <small class="block font-hand text-xs md:text-sm lg:text-sm text-blush leading-none mt-0.5 font-semibold">mu tier</small>
@@ -47,24 +48,24 @@
         class="hero-bg absolute inset-x-0 -top-[15%] h-[130%] bg-[url('../assets/images/hero.jpg')] bg-cover bg-center will-change-transform">
       </div>
       <div class="absolute inset-0 bg-black/20"></div>
-      <div class="relative max-w-3xl text-right pr-12">
+      <div class="relative max-w-3xl text-right pr-6 md:pr-8 lg:pr-14 pb-0 md:pb-4 lg:pb-10">
         <span
-          class="inline-flex flex-row-reverse items-center gap-2.5 font-hand text-lg md:text-xl lg:text-xl text-blush font-semibold mb-6 opacity-0 animate-fade-slide-tag before:content-[''] before:w-9 before:h-px before:bg-blush before:rounded">hello,
+          class="inline-flex flex-row-reverse items-center gap-2.5 font-hand text-lg md:text-xl lg:text-2xl text-blush font-semibold mb-4 md:mb-5 lg:mb-7 opacity-0 animate-fade-slide-tag before:content-[''] before:w-9 before:h-px before:bg-blush before:rounded">hello,
           sweet morning ✿</span>
-        <h1 class="font-display font-normal text-[clamp(52px,7vw,60px)] leading-tight tracking-tighter text-cream mb-7"
+        <h1 class="font-display font-normal text-[clamp(48px,7vw,92px)] leading-tight tracking-tighter text-cream mb-5 md:mb-6 lg:mb-8"
           style='font-variation-settings:"SOFT" 80,"WONK" 1'>
           <span class="block opacity-0 translate-y-10 animate-fade-slide-line-1"><em
-              class="not-italic font-hand font-bold text-blush text-[0.92em] inline-block rotate-[-4deg] -translate-y-2 mx-1.5">累了？</em>歡迎回來，</span>
+              class="not-italic font-hand font-bold text-blush text-[0.92em] inline-block rotate-[-4deg] -translate-y-2 mx-1 md:mx-1.5 lg:mx-2">累了？</em>歡迎回來，</span>
           <span class="block opacity-0 translate-y-10 animate-fade-slide-line-2">來一杯奶茶吧</span>
         </h1>
-        <p class="max-w-md ml-auto text-sm md:text-base lg:text-base leading-loose text-cream mb-10 opacity-0 animate-fade-slide-desc">
+        <p class="max-w-md ml-auto text-sm md:text-base lg:text-xl leading-loose text-cream mb-6 md:mb-8 lg:mb-12 opacity-0 animate-fade-slide-desc">
           陽光從天窗落下來，剛好落在你手邊。 <br>
           待久一點也沒關係！ 不介意的話，<br>
           請把這裡當成你的家吧。
         </p>
         <div class="flex justify-end gap-5 items-center opacity-0 animate-fade-slide-actions">
           <button onclick="window.location.href='#menu';"
-            class="btn-primary inline-flex items-center gap-2.5 py-4 px-8 bg-blush text-coffee border-none rounded-full font-body font-semibold text-sm md:text-base lg:text-base tracking-wide cursor-pointer transition-all duration-300 shadow-soft hover:bg-cream hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-10px_rgba(199,122,102,0.5)]">
+            class="btn-primary inline-flex items-center gap-2.5 py-3 px-6 md:py-4 md:px-7 lg:py-5 lg:px-9 bg-blush text-coffee border-none rounded-full font-body font-semibold text-sm md:text-base lg:text-lg tracking-wide cursor-pointer transition-all duration-300 shadow-soft hover:bg-cream hover:-translate-y-0.5 hover:shadow-[0_14px_28px_-10px_rgba(199,122,102,0.5)]">
             探索菜單
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
               stroke-linecap="round">
@@ -76,27 +77,110 @@
     </section>
 
     <!-- ============== STRIP ============== -->
-    <div
-      class="py-7 px-12 text-cream-soft flex overflow-hidden gap-16 font-display text-lg md:text-xl lg:text-xl italic tracking-wider relative">
-      <div class="flex gap-16 animate-marquee whitespace-nowrap shrink-0">
-        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>精品手沖</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>自家烘焙</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>手作甜點</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>季節限定</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>寵物友善</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>小巷老宅</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>精品手沖</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>自家烘焙</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>手作甜點</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot"></span>季節限定</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot green"></span>寵物友善</span>
-        <span class="inline-flex items-center gap-5"><span class="strip-dot butter"></span>小巷老宅</span>
+    <div class="py-7 px-12 flex overflow-hidden gap-16 relative">
+      <div class="flex items-center gap-16 animate-marquee shrink-0">
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
+        <img src="assets/images/dog_1.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot"></span>
+        <img src="assets/images/dog_2.png" alt="dog" class="story-sprite dog-icon" />
+        <span class="strip-dot green"></span>
+        <img src="assets/images/dog_3.png" alt="dog" class="story-sprite dog-icon-lg" />
+        <span class="strip-dot coffee"></span>
       </div>
     </div>
 
     <!-- ============== STORY ============== -->
     <section id="story"
-      class="py-36 px-32 grid grid-cols-[1fr_1.1fr] gap-20 items-center max-w-[1400px] mx-auto max-md:grid-cols-1 max-md:py-20 max-md:px-6 max-md:gap-12">
+      class="py-36 px-6 md:px-12 lg:px-32 grid grid-cols-[1fr_1.1fr] gap-20 items-center max-w-[1400px] mx-auto max-md:grid-cols-1 max-md:py-20 max-md:gap-12">
       <!-- 主圖等比例顯示，右下角疊一張 sprite -->
       <div class="relative shadow-soft w-[90%]">
         <!-- 圖片裁切容器：固定比例 + overflow-hidden 容納視差 -->
@@ -106,12 +190,14 @@
         </div>
         <!-- Sprite 在裁切容器外，可以正常 overflow -->
         <img src="assets/images/story_sprite.png" alt="story sprite"
-          class="story-sprite absolute bottom-[6%] right-[4%] translate-x-1/2 translate-y-1/4 scale-110" />
+          class="story-sprite absolute bottom-0 right-0 translate-x-[25%] translate-y-[22%] md:translate-y-[16%] lg:translate-y-[10%] w-[45%] max-w-none" />
       </div>
       <div>
         <span class="font-hand text-blush text-xl md:text-2xl lg:text-2xl font-semibold mb-3.5 inline-block">about us ✎</span>
-        <h2 class="font-display font-normal text-3xl md:text-4xl lg:text-6xl leading-tight tracking-tight text-coffee mb-6">
-          一間小小的、<em class="not-italic font-hand text-sage font-bold">剛好</em>的咖啡店。</h2>
+        <h2 class="font-display font-normal text-3xl md:text-4xl lg:text-7xl leading-tight tracking-tight text-coffee mb-6">
+          <span class="block">一間小小的、</span>
+          <span class="block"><em class="not-italic font-hand text-sage font-bold">剛好</em>的咖啡店。</span>
+        </h2>
         <p class="text-sm md:text-base lg:text-base leading-loose text-coffee-soft mb-5 max-w-lg">
           2026 年的春天，畝湯在穹頂皓天的一角悄然萌芽。 店長身為一隻厲害又驕傲的小狗，想為每一位到訪的朋友，打造一個能安心卸下疲憊、舒緩肩膀的溫暖避風港。
         </p>
@@ -181,7 +267,7 @@
       <div class="text-center mb-8">
         <span class="font-hand text-sage text-xl md:text-2xl lg:text-2xl font-semibold block mb-1">our team ✿</span>
         <h2 class="font-display font-normal text-3xl md:text-4xl lg:text-5xl leading-snug text-coffee tracking-tight">
-          認真的人，<em class="not-italic font-hand text-blush font-bold">泡認真的</em>咖啡</h2>
+          我們堅毅的<em class="not-italic font-hand text-blush font-bold">狗狗</em>店員們</h2>
       </div>
 
       <div class="flex flex-col">
@@ -206,7 +292,7 @@
 
         <!-- 小麥 -->
         <article
-          class="staff-row s-xm flex gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 flex-row-reverse max-md:flex-col max-md:gap-10 max-md:py-8">
+          class="hidden staff-row s-xm gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 flex-row-reverse max-md:flex-col max-md:gap-10 max-md:py-8">
           <div class="staff-photo relative aspect-square flex-1 overflow-hidden grid place-items-center">
             <div class="member-headshot relative size-4/5 overflow-hidden aspect-square">
               <img src="assets/images/members_1.png" alt=""
@@ -228,14 +314,11 @@
     <!-- ============== MENU ============== -->
     <section id="menu" class="py-32 px-12 bg-cream-soft relative overflow-hidden max-md:py-20 max-md:px-5">
       <div class="max-w-5xl mx-auto relative z-10">
-        <div class="flex justify-between items-end flex-wrap gap-6 pb-9 mb-10 relative">
-          <h2 class="font-display font-normal text-3xl md:text-4xl lg:text-6xl leading-none text-coffee tracking-tighter">
-            今日 <em
-              class="not-italic font-hand text-blush font-bold text-3xl md:text-4xl lg:text-5xl inline-block rotate-[-3deg] -translate-y-1">menu</em><br>甜甜的一頁
-          </h2>
-          <p
-            class="font-hand text-sage text-lg md:text-xl lg:text-xl font-semibold max-w-xs text-right leading-snug before:content-['✿'] before:inline-block before:mr-1.5 before:text-butter max-md:text-left">
-            旬味每日更替<br>歡迎詢問當日特選</p>
+        <div class="flex flex-col items-center pb-9 mb-10 relative">
+          <img src="assets/images/menu_portrait.png" alt="menu sprite"
+            class="w-52 md:w-60 lg:w-72 h-auto object-contain mb-4" />
+          <span class="font-display text-coffee tracking-[6px] text-md md:text-lg lg:text-2xl font-semibold uppercase">DAILY
+            MENU</span>
           <div class="menu-divider absolute bottom-0 left-0 right-0"></div>
         </div>
 
@@ -453,12 +536,18 @@
                   class="font-display font-medium text-base md:text-lg lg:text-lg text-coffee leading-snug mb-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
                   不快速的速寫服務 <span class="font-hand text-blush font-semibold text-base md:text-lg lg:text-lg leading-none">slow sketch</span></h4>
                 <p class="text-xs text-coffee-soft leading-relaxed">
-                  馬鈴薯用他的小手，為你盡心盡力畫出一張只屬於你的速寫。</p>
+                  總而言之就是用肝努力畫畫！</p>
               </div>
               <span class="font-display text-sm md:text-base lg:text-base text-coffee font-bold pt-1 whitespace-nowrap text-right">100000<span
                   class="ml-1 font-normal text-milk-tea-deep">Gil</span>
             </li>
           </ul>
+        </div>
+        <div class="menu-divider mt-20 mb-20 mx-auto max-w-lg"></div>
+        <div class="flex items-center justify-center gap-6">
+          <img src="assets/images/dog_1.png" alt="dog" class="w-20 h-20 object-contain" />
+          <img src="assets/images/dog_2.png" alt="dog" class="w-20 h-20 object-contain" />
+          <img src="assets/images/dog_3.png" alt="dog" class="w-20 h-20 object-contain" />
         </div>
       </div>
     </section>
@@ -501,6 +590,11 @@
         class="relative w-full h-full self-stretch overflow-hidden [clip-path:polygon(20%_0,100%_0,100%_100%,0_100%)] max-md:h-[300px]">
         <img src="assets/images/visit.png" alt=""
           class="visit-img absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
+        <div class="absolute bottom-[30%] right-1/2 translate-x-1/2 translate-y-1/2 w-[40%]">
+          <img src="assets/images/visit_sprite.png" alt="visit sprite" class="story-sprite relative block w-full max-w-none" />
+          <img src="assets/images/visit_bubble.png" alt="visit bubble"
+            class="absolute -top-[18%] -right-[25%] w-[65%] max-w-none animate-drift will-change-transform" />
+        </div>
       </div>
     </section>
   </main>

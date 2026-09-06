@@ -56,36 +56,41 @@
 /*  components — 不能用 utility 表達的圖案/形狀     */
 /* ════════════════════════════════════════════════ */
 @layer components {
-  /* ─── Logo 咖啡杯 ─── */
-  .logo-mark {
-    width: 38px;
-    height: 38px;
-    background: theme("colors.coffee");
-    border-radius: 50% 50% 48% 52% / 52% 48% 50% 50%;
-    position: relative;
-    display: grid;
-    place-items: center;
-    box-shadow: inset -4px -4px 6px rgba(0, 0, 0, 0.15);
-    animation: wobble 6s ease-in-out infinite;
+
+  /* ─── Strip 跑馬燈狗狗圖示大小 ───
+     想調整大小，只要改這裡的三個 height 就好（下面 48 張 <img> 共用這個 class）：
+     手機 / 小螢幕(≥768px) / 大螢幕(≥1024px)，改完存檔後跑一次 `npm run build`（或開著 `npm run dev` 會自動重編） */
+  .dog-icon {
+    height: 3.5rem; /* 手機，56px */
+    width: auto;
+    object-fit: contain;
   }
-  .logo-mark::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    background: theme("colors.cream");
-    border-radius: 50%;
-    box-shadow: 10px 0 0 theme("colors.cream");
-    position: absolute;
-    top: 12px;
+  @media (min-width: 768px) {
+    .dog-icon {
+      height: 4rem; /* 小螢幕，64px */
+    }
   }
-  .logo-mark::after {
-    content: "";
-    width: 14px;
-    height: 4px;
-    border-bottom: 2px solid theme("colors.cream");
-    border-radius: 0 0 20px 20px;
-    position: absolute;
-    bottom: 11px;
+  @media (min-width: 1024px) {
+    .dog-icon {
+      height: 5rem; /* 大螢幕，80px */
+    }
+  }
+
+  /* dog_3 專用的放大版，其餘規則跟 .dog-icon 一樣，只有 height 比較大 */
+  .dog-icon-lg {
+    height: 3.8rem; /* 手機，72px */
+    width: auto;
+    object-fit: contain;
+  }
+  @media (min-width: 768px) {
+    .dog-icon-lg {
+      height: 4.8rem; /* 小螢幕，88px */
+    }
+  }
+  @media (min-width: 1024px) {
+    .dog-icon-lg {
+      height: 5.8rem; /* 大螢幕，104px */
+    }
   }
 
   /* ─── Hero 咖啡杯 ─── */
@@ -262,6 +267,19 @@
   }
   .strip-dot.butter {
     background: theme("colors.butter");
+  }
+  .strip-dot.coffee {
+    background: theme("colors.coffee");
+  }
+
+  /* Visit 進場淡入（純 CSS + IntersectionObserver，見 js/main.js）
+     .reveal-pending 只會被 JS「加上去」，預設不存在 → 沒有 JS 也一定看得到內容 */
+  .reveal-target {
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .reveal-pending {
+    opacity: 0;
+    transform: translateY(24px);
   }
 
   /* Rules 圓形編號 (有機形狀) */

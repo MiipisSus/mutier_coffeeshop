@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>預約 · 畝湯咖啡 Mu Tier Café</title>
+  <link rel="icon" type="image/png" href="assets/images/logo_mark_2.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -18,7 +19,7 @@
   <header
     class="fixed top-0 left-0 right-0 z-50 py-5 px-12 flex items-center justify-between bg-cream backdrop-blur-md border-b-2 border-dashed border-milk-tea/80 max-md:px-6 max-md:py-4">
     <a href="index.html" class="flex items-center gap-2.5 font-display font-medium text-xl text-coffee tracking-wide">
-      <div class="logo-mark"></div>
+      <img src="assets/images/logo_mark.png" alt="畝湯咖啡 logo" class="w-[38px] h-[38px] object-contain animate-wobble-rotate" />
       <div>
         畝湯咖啡
         <small class="block font-hand text-sm text-blush leading-none mt-0.5 font-semibold">mu tier</small>
@@ -329,7 +330,7 @@
       const emptyDefaultLead = 'pick a day to begin ✎';
       const emptyDefaultHint = '點選左側的粉色日期，<br>就能看到當日所有可預約時段。';
       const emptyMonthLead = '本月尚無可預約時段';
-      const emptyMonthHint = '請以遊戲中招募宣傳為主';
+      const emptyMonthHint = '請以遊戲中招募宣傳為主，謝謝！';
 
       // "21:10:30" → "PM 09:10"
       function formatAMPM(timeStr) {
