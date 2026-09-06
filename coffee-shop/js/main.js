@@ -267,3 +267,63 @@ window.addEventListener("load", () => {
 if (document.fonts && document.fonts.ready) {
   document.fonts.ready.then(() => ScrollTrigger.refresh());
 }
+
+/* ============================================================
+ * Menu「服務」區塊圖片：手機版改成單張輪播
+ * 桌機維持原本 3 欄並排 —— 顯示/隱藏用的 max-md:opacity-0 /
+ * max-md:pointer-events-none 這兩個 class 本身就只在手機寬度生效，
+ * 所以這裡的 JS 不用另外判斷螢幕寬度也不會影響桌機顯示；
+ * 只有「要不要跑自動輪播」「點擊要不要換下一張」這兩件事才需要判斷。
+ * ============================================================ */
+(() => {
+  const track = document.getElementById("serviceCarousel");
+  if (!track) return;
+
+  const slides = Array.from(track.querySelectorAll(".service-slide"));
+  if (slides.length < 2) return;
+
+  let active = 0;
+  let timer = null;
+
+  function show(index) {
+    active = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const isActive = i === active;
+      slide.classList.toggle("max-md:opacity-0", !isActive);
+      slide.classList.toggle("max-md:pointer-events-none", !isActive);
+    });
+  }
+
+  function next() {
+    show(active + 1);
+  }
+
+  function stopAuto() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function startAuto() {
+    stopAuto();
+    timer = setInterval(next, 3500);
+  }
+
+  const mq = window.matchMedia("(max-width: 767px)");
+
+  function syncWithBreakpoint() {
+    if (mq.matches) {
+      startAuto();
+    } else {
+      stopAuto();
+    }
+  }
+
+  track.addEventListener("click", () => {
+    if (!mq.matches) return; // 桌機是靜態 3 欄並排，點擊不做事
+    next();
+    startAuto(); // 使用者手動點過，重新計時，避免手動切完馬上又自動跳一次
+  });
+
+  mq.addEventListener("change", syncWithBreakpoint);
+  syncWithBreakpoint();
+})();
