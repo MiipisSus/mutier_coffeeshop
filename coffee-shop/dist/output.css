@@ -1806,6 +1806,10 @@ body::after {
   max-width: 20rem;
 }
 
+.max-w-sm {
+  max-width: 24rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2592,8 +2596,8 @@ body::after {
   font-size: clamp(32px, 3.8vw, 44px);
 }
 
-.text-\[clamp\(48px\2c 7vw\2c 92px\)\] {
-  font-size: clamp(48px, 7vw, 92px);
+.text-\[clamp\(48px\2c 4vw\2c 92px\)\] {
+  font-size: clamp(48px, 4vw, 92px);
 }
 
 .text-base {
@@ -2648,6 +2652,10 @@ body::after {
 .tabular-nums {
   --tw-numeric-spacing: tabular-nums;
   font-variant-numeric: var(--tw-ordinal) var(--tw-slashed-zero) var(--tw-numeric-figure) var(--tw-numeric-spacing) var(--tw-numeric-fraction);
+}
+
+.leading-8 {
+  line-height: 2rem;
 }
 
 .leading-loose {
