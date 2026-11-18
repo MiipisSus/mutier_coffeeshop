@@ -31,13 +31,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: coffee-shop/package-lock.json
+      - name: Install dependencies
+        working-directory: coffee-shop
+        run: npm ci
+      # 壓縮 CSS，並把圖片縮圖、轉成 WebP 輸出到 _site/（repo 內原圖不動）
+      - name: Build site
+        working-directory: coffee-shop
+        run: |
+          npm run build
+          npm run build:site
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: './coffee-shop'
+          path: './coffee-shop/_site'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
