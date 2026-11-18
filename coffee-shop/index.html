@@ -99,6 +99,9 @@
     })();
   </script>
   <title>畝湯咖啡 · Mu Tier Café</title>
+  <!-- hero 是 CSS 背景圖，瀏覽器要等 CSS 解析完才會發現；預先告訴它優先下載 -->
+  <link rel="preload" as="image" href="assets/images/hero.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/images/logo_mark.png">
   <link rel="icon" type="image/png" href="assets/images/logo_mark_2.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,11 +293,11 @@
       <div class="relative shadow-soft w-[90%]">
         <!-- 圖片裁切容器：固定比例 + overflow-hidden 容納視差 -->
         <div class="relative overflow-hidden aspect-[441/662]">
-          <img src="assets/images/story_house.png" alt="story image"
+          <img loading="lazy" decoding="async" src="assets/images/story_house.png" alt="story image"
             class="story-img absolute inset-x-0 -top-[20%] w-full h-[140%] object-cover will-change-transform" />
         </div>
         <!-- Sprite 在裁切容器外，可以正常 overflow -->
-        <img src="assets/images/story_sprite.png" alt="story sprite"
+        <img loading="lazy" decoding="async" src="assets/images/story_sprite.png" alt="story sprite"
           class="story-sprite absolute bottom-0 right-0 translate-x-[25%] translate-y-[22%] md:translate-y-[16%] lg:translate-y-[10%] w-[45%] max-w-none" />
       </div>
       <div>
@@ -382,7 +385,7 @@
           class="staff-row s-xz flex gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 max-md:flex-col max-md:gap-10 max-md:py-8">
           <div class="staff-photo relative aspect-square flex-1 overflow-hidden grid place-items-center max-md:w-full max-md:flex-none">
             <div class="member-headshot relative size-4/5 overflow-hidden aspect-square">
-              <img src="assets/images/members_1.png" alt=""
+              <img loading="lazy" decoding="async" src="assets/images/members_1.png" alt=""
                 class="absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
             </div>
           </div>
@@ -401,7 +404,7 @@
           class="hidden staff-row s-xm gap-16 items-center py-14 border-b border-dashed border-coffee/15 last:border-b-0 flex-row-reverse max-md:flex-col max-md:gap-10 max-md:py-8">
           <div class="staff-photo relative aspect-square flex-1 overflow-hidden grid place-items-center max-md:w-full max-md:flex-none">
             <div class="member-headshot relative size-4/5 overflow-hidden aspect-square">
-              <img src="assets/images/members_1.png" alt=""
+              <img loading="lazy" decoding="async" src="assets/images/members_1.png" alt=""
                 class="absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
             </div>
           </div>
@@ -421,7 +424,7 @@
     <section id="menu" class="py-32 px-12 bg-cream-soft relative overflow-hidden max-md:py-20 max-md:px-5">
       <div class="max-w-5xl mx-auto relative z-10">
         <div class="flex flex-col items-center pb-9 mb-10 relative">
-          <img src="assets/images/menu_portrait.png" alt="menu sprite"
+          <img loading="lazy" decoding="async" src="assets/images/menu_portrait.png" alt="menu sprite" width="1584" height="1673"
             class="w-52 md:w-60 lg:w-72 h-auto object-contain mb-4" />
           <span class="font-display text-coffee tracking-[6px] text-md md:text-lg lg:text-2xl font-semibold uppercase">DAILY
             MENU</span>
@@ -620,17 +623,17 @@
             class="grid grid-cols-3 gap-12 mx-12 mb-9 max-md:grid-cols-1 max-md:mx-6 max-md:gap-0 max-md:mb-7 max-md:cursor-pointer">
             <div
               class="service-slide relative aspect-square w-full overflow-hidden max-md:col-start-1 max-md:row-start-1 max-md:transition-opacity max-md:duration-500">
-              <img src="assets/images/members_1.png" alt=""
+              <img loading="lazy" decoding="async" src="assets/images/members_1.png" alt=""
                 class="menu-img absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
             </div>
             <div
               class="service-slide relative aspect-square w-full overflow-hidden max-md:col-start-1 max-md:row-start-1 max-md:transition-opacity max-md:duration-500 max-md:opacity-0 max-md:pointer-events-none">
-              <img src="assets/images/members_1.png" alt=""
+              <img loading="lazy" decoding="async" src="assets/images/members_1.png" alt=""
                 class="menu-img absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
             </div>
             <div
               class="service-slide relative aspect-square w-full overflow-hidden max-md:col-start-1 max-md:row-start-1 max-md:transition-opacity max-md:duration-500 max-md:opacity-0 max-md:pointer-events-none">
-              <img src="assets/images/members_1.png" alt=""
+              <img loading="lazy" decoding="async" src="assets/images/members_1.png" alt=""
                 class="menu-img absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
             </div>
           </div>
@@ -698,11 +701,11 @@
       <!-- 右：直角梯形遮罩圖片（右側貼齊 section 邊） -->
       <div
         class="relative w-full h-full self-stretch overflow-hidden [clip-path:polygon(20%_0,100%_0,100%_100%,0_100%)] max-md:h-[300px]">
-        <img src="assets/images/visit.png" alt=""
+        <img loading="lazy" decoding="async" src="assets/images/visit.png" alt=""
           class="visit-img absolute inset-x-0 -top-[10%] w-full h-[120%] object-cover will-change-transform" />
         <div class="absolute bottom-[30%] right-1/2 translate-x-1/2 translate-y-1/2 w-[40%]">
-          <img src="assets/images/visit_sprite.png" alt="visit sprite" class="story-sprite relative block w-full max-w-none" />
-          <img src="assets/images/visit_bubble.png" alt="visit bubble"
+          <img loading="lazy" decoding="async" src="assets/images/visit_sprite.png" alt="visit sprite" class="story-sprite relative block w-full max-w-none" />
+          <img loading="lazy" decoding="async" src="assets/images/visit_bubble.png" alt="visit bubble"
             class="absolute -top-[18%] -right-[25%] w-[65%] max-w-none animate-drift will-change-transform" />
         </div>
       </div>
@@ -757,12 +760,29 @@
         });
       };
 
-      var criticalImages = [
-        "assets/images/hero.jpg",
-        "assets/images/story_house.png",
-        "assets/images/menu_portrait.png",
-        "assets/images/visit.png",
-      ];
+      /* 只等「首屏真正看得到」的東西，不再等 window load。
+       * window load 要等頁面上所有圖片、字型、第三方資源全部載完，
+       * 底部的大圖或任何一個卡住的外部請求，都會讓 loader 一直轉下去。
+       * 下方圖片已改成 loading="lazy"，捲到附近才會下載。 */
+      var maxLoaderTime = 3500; // 不論如何，最久 3.5 秒一定關閉
+      var fontWaitLimit = 1500; // 字型最多等 1.5 秒，之後用備用字型先顯示（display=swap）
+
+      var wait = function (ms) {
+        return new Promise(function (resolve) { window.setTimeout(resolve, ms); });
+      };
+
+      var hidden = false;
+      var hideLoader = function () {
+        if (hidden) return;
+        hidden = true;
+        setProgress(stages[4].value, stages[4].text);
+        var elapsed = performance.now() - loaderStartedAt;
+        var remainingTime = Math.max(450, minimumLoaderTime - elapsed);
+        window.setTimeout(function () {
+          loader.classList.add("is-hidden");
+          document.body.classList.remove("is-loading");
+        }, remainingTime);
+      };
 
       setProgress(stages[0].value, stages[0].text);
 
@@ -775,37 +795,32 @@
         return;
       }
 
-      loadImage(criticalImages[0]).then(function () {
+      var heroReady = loadImage("assets/images/hero.jpg").then(function () {
         setProgress(stages[1].value, stages[1].text);
       });
 
-      Promise.all(criticalImages.map(loadImage)).then(function () {
+      // 這段 script 位於 body 底部，DOMContentLoaded 會在 defer 的 GSAP / main.js 執行完後觸發
+      var domReady = new Promise(function (resolve) {
+        document.addEventListener("DOMContentLoaded", resolve, { once: true });
+      }).then(function () {
         setProgress(stages[2].value, stages[2].text);
       });
 
-      var fontsReady = document.fonts && document.fonts.ready
-        ? document.fonts.ready
-        : Promise.resolve();
-
-      fontsReady.then(function () {
+      var fontsReady = Promise.race([
+        document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve(),
+        wait(fontWaitLimit),
+      ]).then(function () {
         setProgress(stages[3].value, stages[3].text);
       });
 
-      window.addEventListener("load", function () {
-        setProgress(stages[4].value, stages[4].text);
-        var elapsed = performance.now() - loaderStartedAt;
-        var remainingTime = Math.max(450, minimumLoaderTime - elapsed);
-        window.setTimeout(function () {
-          loader.classList.add("is-hidden");
-          document.body.classList.remove("is-loading");
-        }, remainingTime);
-      }, { once: true });
+      Promise.all([heroReady, domReady, fontsReady]).then(hideLoader);
+      window.setTimeout(hideLoader, maxLoaderTime);
     })();
   </script>
 
   <!-- ============== GSAP + 自訂 JS ============== -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/gsap.min.js" defer></script>
+  <script src="js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="js/main.js" defer></script>
 
 </body>

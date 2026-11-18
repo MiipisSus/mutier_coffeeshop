@@ -267,6 +267,21 @@ window.addEventListener("load", () => {
   ScrollTrigger.refresh();
 });
 
+/* 下方圖片改成 loading="lazy" 後，會在 window load 之後才陸續載入，
+ * 載入完成可能改變版面高度 —— 每張載完都（合併成一次）重新測量。 */
+let lazyRefreshTimer = null;
+document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+  if (img.complete) return;
+  img.addEventListener(
+    "load",
+    () => {
+      clearTimeout(lazyRefreshTimer);
+      lazyRefreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
+    },
+    { once: true },
+  );
+});
+
 /* 自訂 web font（Fraunces / Caveat 等）載入完成也會改變文字高度，
  * 若晚於上面的 refresh 才換字型，一樣會讓 trigger 位置跟實際 layout 對不上。 */
 if (document.fonts && document.fonts.ready) {
