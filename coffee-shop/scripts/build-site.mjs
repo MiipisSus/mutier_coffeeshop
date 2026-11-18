@@ -98,10 +98,19 @@ async function main() {
     .png({ compressionLevel: 9 })
     .toFile(path.join(OUT, IMG_DIR, "favicon.png"));
 
-  /* 2. 改寫引用 */
-  const names = Object.keys(IMAGES).map((f) => f.replace(/\./g, "\\."));
-  const ref = new RegExp(`(assets/images/)(${names.join("|")})`, "g");
-  const toWebp = (_, dir, file) => dir + file.replace(/\.(png|jpe?g)$/i, ".webp");
+  /* 2. 改寫引用
+   * 注意：Tailwind 的任意值 class（例如 bg-[url('../assets/images/hero.jpg')]）
+   * 在 CSS 選擇器裡會被跳脫成 assets\/images\/hero\.jpg。HTML 的 class 名稱
+   * 和 CSS 選擇器必須一起改，否則兩邊對不上，背景圖就會消失。
+   * 所以這裡的比對要同時涵蓋「有反斜線」和「沒有反斜線」兩種寫法。 */
+  const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const bases = Object.keys(IMAGES).map((f) => esc(f.replace(/\.[^.]+$/, "")));
+  const ref = new RegExp(
+    `(assets\\\\?/images\\\\?/)(${bases.join("|")})(\\\\?\\.)(png|jpe?g)\\b`,
+    "gi",
+  );
+  const toWebp = (match, dir, base, dot, ext) =>
+    IMAGES[`${base}.${ext}`] ? `${dir}${base}${dot}webp` : match;
 
   const textFiles = ["index.html", "booking.html", "dist/output.css"];
   for (const rel of textFiles) {
@@ -124,6 +133,22 @@ async function main() {
   }
   if (missing.length) {
     console.error("\n找不到下列圖片，停止部署：\n  " + [...new Set(missing)].join("\n  "));
+    process.exit(1);
+  }
+
+  /* 3b. 檢查沒有漏改的舊檔名（包含 CSS 選擇器裡跳脫過的寫法）。
+   * 只改到一半（例如 HTML 改了、CSS 選擇器沒改）時，圖片檔雖然存在，
+   * class 卻對不上，上面的檢查抓不到，所以要另外確認。 */
+  const leftovers = [];
+  for (const rel of textFiles) {
+    const lines = (await readFile(path.join(OUT, rel), "utf8")).split("\n");
+    lines.forEach((line, i) => {
+      if (KEEP_ORIGINAL_LINE.test(line)) return;
+      for (const m of line.matchAll(ref)) leftovers.push(`${rel}:${i + 1}: ${m[0]}`);
+    });
+  }
+  if (leftovers.length) {
+    console.error("\n下列引用沒有被改成 WebP，停止部署：\n  " + leftovers.join("\n  "));
     process.exit(1);
   }
 
