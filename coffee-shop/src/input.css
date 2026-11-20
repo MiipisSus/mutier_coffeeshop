@@ -7,7 +7,8 @@
 /* ════════════════════════════════════════════════ */
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* 不要在這裡設 scroll-behavior: smooth —— 會讓 GSAP ScrollTrigger
+       重新測量時位置整個偏掉、視差卡住。錨點平滑捲動改在 js/main.js 處理。 */
     /* 手機上有些裝飾圖片（例如 story-sprite）刻意讓它探出容器邊界，
        只溢出個幾 px，桌機看不出來，但手機捲動到底/兩側時，
        iOS Safari 那種「彈性回彈」效果會抓到這幾 px 溢出，

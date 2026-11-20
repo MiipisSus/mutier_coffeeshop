@@ -5,6 +5,24 @@
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* 導覽列錨點的平滑捲動（取代 CSS 的 html { scroll-behavior: smooth }）
+ * ScrollTrigger 重新測量時會瞬間捲回頂端量位置、量完再捲回來。CSS 的
+ * scroll-behavior: smooth 會把這個「瞬間」變成動畫 —— 頁面實際上沒回到
+ * 頂端，量出來的 start/end 就整個偏移「當下捲動距離」那麼多，視差圖片會
+ * 直接跳到終點、卡住不動（捲到一半、或在頁面中段重新整理時都會發生）。
+ * 試過只在 refresh 期間暫時關掉，但攔不到 ScrollTrigger 內部的捲動時機，
+ * 所以 CSS 那行拿掉，改成只有「點錨點」這個動作用 JS 指定平滑捲動。 */
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (e) => {
+    const id = link.getAttribute("href").slice(1);
+    const target = id && document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: "smooth" });
+    history.pushState(null, "", `#${id}`);
+  });
+});
+
 /* story-sprite 左右擺動 tick tock 效果（瞬間切換、不補間） */
 gsap.fromTo(
   ".story-sprite",
@@ -267,25 +285,31 @@ window.addEventListener("load", () => {
   ScrollTrigger.refresh();
 });
 
-/* 下方圖片改成 loading="lazy" 後，會在 window load 之後才陸續載入，
- * 載入完成可能改變版面高度 —— 每張載完都（合併成一次）重新測量。 */
-let lazyRefreshTimer = null;
-document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
-  if (img.complete) return;
-  img.addEventListener(
-    "load",
-    () => {
-      clearTimeout(lazyRefreshTimer);
-      lazyRefreshTimer = setTimeout(() => ScrollTrigger.refresh(), 150);
-    },
-    { once: true },
-  );
-});
-
-/* 自訂 web font（Fraunces / Caveat 等）載入完成也會改變文字高度，
- * 若晚於上面的 refresh 才換字型，一樣會讓 trigger 位置跟實際 layout 對不上。 */
-if (document.fonts && document.fonts.ready) {
-  document.fonts.ready.then(() => ScrollTrigger.refresh());
+/* 版面高度一變就重新測量
+ * loader 現在不等 window load 就關閉，訪客開始捲動時，字型（中文字型是
+ * 分批載入的）和 lazy 圖片都可能還在載入、版面高度還會變。只靠 load /
+ * fonts.ready 這些「單一時間點」重新測量來不及：fonts.ready 可能在字型
+ * 開始下載前就 resolve，load 在慢速網路下可能十幾秒後才觸發，這段期間
+ * trigger 用的是舊位置，圖片會提早跑到終點、看起來卡住不動。
+ * 改用 ResizeObserver 直接盯著 body 高度：不論是什麼原因讓版面變了，
+ * 都會（合併成一次）重新測量。 */
+let layoutRefreshTimer = null;
+let lastBodyHeight = document.body.offsetHeight;
+const scheduleRefresh = () => {
+  clearTimeout(layoutRefreshTimer);
+  layoutRefreshTimer = setTimeout(() => ScrollTrigger.refresh(), 200);
+};
+if ("ResizeObserver" in window) {
+  new ResizeObserver(() => {
+    const h = document.body.offsetHeight;
+    if (h === lastBodyHeight) return;
+    lastBodyHeight = h;
+    scheduleRefresh();
+  }).observe(document.body);
+}
+if (document.fonts) {
+  // 每批字型載完都會觸發（不像 fonts.ready 只有一次）
+  document.fonts.addEventListener("loadingdone", scheduleRefresh);
 }
 
 /* ============================================================
